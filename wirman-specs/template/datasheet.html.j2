@@ -74,10 +74,14 @@ html,body{ margin:0; padding:0; background:#fff; color:var(--ink); font-family:v
 .spec td.u{ color:var(--muted); font-size:7.6pt; text-align:right; white-space:nowrap; width:11mm; }
 
 .dims{ margin-top:4.5mm; }
-.dims .body{ display:grid; grid-template-columns:36mm minmax(0,1fr); gap:3mm; align-items:center; padding:2mm 3mm; }
+.dims .body{ display:grid; grid-template-columns:40mm minmax(0,1fr); gap:3mm; align-items:center; padding:2mm 3mm; }
 .dims svg{ width:100%; height:auto; display:block; }
 .dims table{ width:100%; }
 .dims td.v{ white-space:nowrap; }
+.dims .wlh{ display:flex; align-items:baseline; gap:3mm; padding:1.8mm 3mm; border-top:0.2mm solid var(--line-2); background:#FAFBFC; }
+.dims .wlh .l{ color:var(--muted); }
+.dims .wlh .v{ font-family:var(--cond); font-weight:700; font-size:13pt; color:var(--navy); letter-spacing:0.02em; }
+.dims .wlh .v span{ font-family:var(--sans); font-weight:400; font-size:7.6pt; color:var(--muted); margin-left:1mm; }
 .dims td.v span{ color:var(--muted); font-size:7.6pt; font-weight:400; margin-left:1mm; }
 .dims table td{ padding:1.6mm 1.5mm; }
 .dims table td.l{ width:auto; white-space:nowrap; padding-left:0; }
@@ -202,11 +206,14 @@ ol.callouts li span{ width:5mm; height:5mm; border-radius:50%; background:var(--
         <div class="body">
           {{ dims_svg(m.dimensions) }}
           <table>
-            {% for r in d.dimensions.rows %}
+            {% for r in d.dimensions.rows if r.key != 'wlh' %}
             <tr><td class="l">{{ r.label }}</td><td class="v">{{ m.dimensions[r.key] }} <span>{{ r.unit }}</span></td></tr>
             {% endfor %}
           </table>
         </div>
+        {% for r in d.dimensions.rows if r.key == 'wlh' %}
+        <div class="wlh"><span class="l">{{ r.label }}</span><span class="v">{{ m.dimensions[r.key] }} <span>{{ r.unit }}</span></span></div>
+        {% endfor %}
       </div>
     </div>
   </div>
