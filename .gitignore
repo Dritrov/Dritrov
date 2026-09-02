@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+wirman-specs/output/html/
+wirman-specs/preview/

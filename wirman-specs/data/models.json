@@ -1,0 +1,883 @@
+{
+  "brand": "WIRMAN",
+  "website": "www.contanti.org",
+  "series_line": "DIESEL GENERATOR SET / 50Hz",
+  "tagline": "WATER-COOLED THREE PHASES 50 HZ DIESEL",
+  "spec_heading": "SPECIFICATIONS 50HZ / 1.500 rpm",
+  "rates": {
+    "heading": "GENERATOR RATES",
+    "columns": [
+      "Service",
+      "Standby",
+      "Prime"
+    ],
+    "rows": [
+      {
+        "label": "Power",
+        "unit": "kVA",
+        "key": "kva"
+      },
+      {
+        "label": "Power",
+        "unit": "kW",
+        "key": "kw"
+      },
+      {
+        "label": "Speed",
+        "unit": "r.p.m",
+        "key": "speed"
+      },
+      {
+        "label": "Standart Voltage",
+        "unit": "V",
+        "key": "voltage"
+      },
+      {
+        "label": "Power Factor",
+        "unit": "Cos Phi",
+        "key": "pf"
+      }
+    ]
+  },
+  "certifications": {
+    "iso": "WIRMAN has ISO 9001, ISO 14001 and OHSAS 18001 quality certifications.",
+    "ce_intro": "WIRMAN gensets are compliant with EC mark which includes the following directives:",
+    "directives": [
+      "2006/42/CE Machinery safety.",
+      "2014/30/UE Electromagnetic compatibility.",
+      "2014/35/UE electrical equipment designed for use within certain voltage limits",
+      "2000/14/EC Sound Power level. Noise emissions outdoor equipment. (amended by 2005/88/EC)",
+      "97/68/EC Emissions of gaseous and particulate pollutants. (amended by 2002/88/EC & 2004/26/EC)",
+      "EN 12100, EN 13857, EN 60204"
+    ]
+  },
+  "definitions": [
+    {
+      "title": "Prime Power (PRP):",
+      "text": "Prime power is the maximum power which a generating set is capable of delivering continuously whilst supplying a variable electrical load when operated for an unlimited number of hours per year under the agreed operating conditions with the maintenance intervals and procedures being carried out as prescribed by the manufacturer. The permissible average power output (Ppp) over 24 h of operation shall not exceed 70 % of the PRP."
+    },
+    {
+      "title": "Emergency Standby Power (ESP):",
+      "text": "Emergency standby power is the maximum power available during a variable electrical power sequence, under the stated operating conditions, for which a generating set is capable of delivering in the event of a utility power outage or under test conditions for up to 200 h of operation per year with the maintenance intervals and procedures being carried out as prescribed by the manufacturers. The permissible average power output over 24 h of operation shall not exceed 70 % of the ESP."
+    }
+  ],
+  "note": "All data based on operation to BS 5514 and DIN 6271 standard reference conditions.",
+  "engine_rows": [
+    {
+      "label": "Rated Output",
+      "key": "rated_output",
+      "unit": "kW"
+    },
+    {
+      "label": "Manufacturer",
+      "key": "manufacturer",
+      "unit": ""
+    },
+    {
+      "label": "Model",
+      "key": "model",
+      "unit": ""
+    },
+    {
+      "label": "Engine Type",
+      "key": "engine_type",
+      "unit": ""
+    },
+    {
+      "label": "Injection Type",
+      "key": "injection",
+      "unit": ""
+    },
+    {
+      "label": "Aspiration Type",
+      "key": "aspiration",
+      "unit": ""
+    },
+    {
+      "label": "Number of cylinders and arrangement",
+      "key": "cylinders",
+      "unit": ""
+    },
+    {
+      "label": "Bore and Stroke",
+      "key": "bore_stroke",
+      "unit": "mm"
+    },
+    {
+      "label": "Displacement",
+      "key": "displacement",
+      "unit": "L"
+    },
+    {
+      "label": "Cooling System",
+      "key": "cooling",
+      "unit": ""
+    },
+    {
+      "label": "Lube Oil Specifications",
+      "key": "lube_oil",
+      "unit": ""
+    },
+    {
+      "label": "Compression Ratio",
+      "key": "compression",
+      "unit": ""
+    },
+    {
+      "label": "Fuel Consumption Standby (110%)",
+      "key": "fuel_110",
+      "unit": "l/h"
+    },
+    {
+      "label": "Fuel Consumption 100% PRP",
+      "key": "fuel_100",
+      "unit": "l/h"
+    },
+    {
+      "label": "Fuel Consumption 75 % PRP",
+      "key": "fuel_75",
+      "unit": "l/h"
+    },
+    {
+      "label": "Fuel Consumption 50 % PRP",
+      "key": "fuel_50",
+      "unit": "l/h"
+    },
+    {
+      "label": "Lube oil consumption with full load",
+      "key": "lube_consumption",
+      "unit": ""
+    },
+    {
+      "label": "Total oil capacity including tubes, filters",
+      "key": "oil_capacity",
+      "unit": "L"
+    },
+    {
+      "label": "Total coolant capacity",
+      "key": "coolant_capacity",
+      "unit": "L"
+    },
+    {
+      "label": "Governor",
+      "key": "governor",
+      "unit": "Type"
+    },
+    {
+      "label": "Air Filter",
+      "key": "air_filter",
+      "unit": "Type"
+    }
+  ],
+  "alternator_rows": [
+    {
+      "label": "Manufacturer",
+      "key": "manufacturer",
+      "unit": ""
+    },
+    {
+      "label": "Model",
+      "key": "model",
+      "unit": ""
+    },
+    {
+      "label": "Poles",
+      "key": "poles",
+      "unit": "No."
+    },
+    {
+      "label": "Connection type (standard)",
+      "key": "connection",
+      "unit": ""
+    },
+    {
+      "label": "Total Harmonic Content",
+      "key": "thd",
+      "unit": ""
+    },
+    {
+      "label": "Insulation",
+      "key": "insulation",
+      "unit": "Class"
+    },
+    {
+      "label": "Enclosure (according IEC-34-5)",
+      "key": "enclosure",
+      "unit": ""
+    },
+    {
+      "label": "Exciter system",
+      "key": "exciter",
+      "unit": ""
+    },
+    {
+      "label": "Voltage regulator",
+      "key": "avr",
+      "unit": ""
+    },
+    {
+      "label": "Bracket type",
+      "key": "bracket",
+      "unit": ""
+    },
+    {
+      "label": "Coupling system",
+      "key": "coupling",
+      "unit": ""
+    },
+    {
+      "label": "Efficiency ( %)",
+      "key": "efficiency",
+      "unit": ""
+    },
+    {
+      "label": "Voltage Output (VAC)",
+      "key": "voltage_out",
+      "unit": ""
+    },
+    {
+      "label": "Frequency (Hz)",
+      "key": "frequency",
+      "unit": ""
+    }
+  ],
+  "alternator_common": {
+    "manufacturer": "WIRMAN",
+    "poles": "4",
+    "connection": "Star",
+    "thd": "< 2 %",
+    "insulation": "H Class",
+    "enclosure": "IP 21/23",
+    "exciter": "Self-excited, brushless",
+    "avr": "A.V.R (Electronic)",
+    "bracket": "Single Bearing",
+    "coupling": "Flexible disc",
+    "efficiency": "87 %",
+    "voltage_out": "230 / 400",
+    "frequency": "50"
+  },
+  "engine_common": {
+    "manufacturer": "WIRMAN",
+    "cooling": "WATER + 50 % Antifreezze",
+    "lube_oil": "ACEA E3,E4,E5 (15W-40)",
+    "lube_consumption": "< 0.5",
+    "governor": "Mechanic",
+    "air_filter": "Dry"
+  },
+  "features": {
+    "heading": "Standard Generator Features",
+    "items": [
+      "Heavy duty water cooled diesel engine and brushless alternator",
+      "Solid steel base frame with minimum 12 hours base tank and anti-vibration mountings",
+      "AMF Control panel with digital-automatic main control module",
+      "50C Tropical radiator",
+      "Battery charge redressor. Lead acid battery",
+      "Residencial type silencer",
+      "Flexible exhaust compensator",
+      "Block water heater unit",
+      "All rotating parts are covered by metal mesh against damages",
+      "Engine and alternator manufacturer test reports (if provided)",
+      "Factory load, performance and function tests",
+      "User Manual, Electrical Drawing and Gurantee certificate"
+    ]
+  },
+  "canopy": {
+    "heading": "Sound Proof Canopy Specifications",
+    "items": [
+      "Special design for minimizing acoustic level",
+      "Galvanized steel construction further protected by polyester powder coat paint",
+      "Black finish stainless steel locks and hinges",
+      "Control panel viewing window in a lockable access door",
+      "Emergency stop push button (red) mounted on enclosure exterior",
+      "Lifting, drag and jacking points on base frame",
+      "Radiator fill via removable, flush mounted rain cap fitted with compression seal"
+    ]
+  },
+  "dimensions": {
+    "heading": "DIMENSIONS",
+    "variant": "CANOPIED",
+    "rows": [
+      {
+        "label": "WxLxH",
+        "key": "wlh",
+        "unit": "mm"
+      },
+      {
+        "label": "Weight",
+        "key": "weight",
+        "unit": "kg"
+      },
+      {
+        "label": "Fuel Tank",
+        "key": "fuel_tank",
+        "unit": "lt"
+      }
+    ]
+  },
+  "control_unit": {
+    "heading": "CONTROL UNIT DSE6120 MKIII",
+    "panel_labels": [
+      "Stop / Reset Mode",
+      "Manual Mode",
+      "Test Mode (DSE6120 MKIII only)",
+      "Auto Mode",
+      "Alarm Mute / Lamp Test",
+      "Start",
+      "Menu Navigation"
+    ],
+    "key_features_heading": "KEY FEATURES",
+    "key_features": [
+      "4-line back-lit LCD text display",
+      "Multiple display languages",
+      "Five-key menu navigation",
+      "LCD alarm indication",
+      "Customisable power-up text and screen images.",
+      "DSENet® expansion compatibility",
+      "Data logging facility",
+      "Internal PLC editor",
+      "Protections disable feature",
+      "Fully configurable via PC using USB communications",
+      "Front panel configuration with PIN protection",
+      "Power save mode",
+      "3-phase generator sensing and protection",
+      "3-phase mains (utility) sensing and protection (DSE6120 MKIII only)",
+      "Automatic load transfer control (DSE6120 MKIII only)",
+      "Generator current and power monitoring (kW, kvar, kVA, pf)",
+      "Mains (utility) current and power monitoring (kW, kvar, kVA, pf) (DSE6120 MKIII only)",
+      "kW overload alarm",
+      "Over current protection",
+      "Breaker control via fascia buttons",
+      "Fuel and start outputs configurable when using CAN",
+      "6 configurable DC outputs",
+      "4 configurable analogue/digital inputs",
+      "8 configurable digital inputs",
+      "CAN, MPU and alternator frequency speed sensing in one variant",
+      "Real time clock",
+      "Manual and automatic fuel pump control",
+      "Engine pre-heat and post-heat functions",
+      "Engine run-time scheduler",
+      "Engine idle control for starting & stopping",
+      "Fuel level alarms",
+      "3 configurable maintenance alarms",
+      "Compatible with a wide range of CAN engines, including Tier 4 engine support",
+      "Uses DSE Configuration Suite PC Software for simplified configuration",
+      "Licence-free PC software",
+      "IP65 rating (with optional gasket) offers increased resistance to water ingress",
+      "Configurable CAN read & transmitted information.",
+      "1 alternative configuration."
+    ],
+    "key_benefits_heading": "KEY BENEFITS",
+    "key_benefits": [
+      "Automatically transfers between mains (utility) and generator (DSE6120 MKIII only) for convenience.",
+      "Hours counter provides accurate information for monitoring and maintenance periods",
+      "User-friendly set-up and button layout for ease of use",
+      "Multiple parameters are monitored & displayed simultaneously for full visibility",
+      "The module can be configured to suit a wide range of applications for user flexibility",
+      "PLC editor allows user configurable functions to meet user specific application requirements."
+    ],
+    "related_heading": "RELATED MATERIALS",
+    "related_title_col": "TITLE",
+    "related": [
+      "DSE6110 MKIII & DSE6120 MKIII Installation Instructions",
+      "DSE6110 MKIII & DSE6120 MKIII Operator Manual",
+      "DSE6110 MKIII & DSE6120 MKIII Configuration Suite PC Manual"
+    ]
+  },
+  "models": [
+    {
+      "file": "WIRMAN 25 KVA",
+      "code": "WM-25 KVA",
+      "kva_short": "25",
+      "rates": {
+        "kva": [
+          "25",
+          "23"
+        ],
+        "kw": [
+          "20",
+          "18"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "20",
+        "model": "W-250D",
+        "engine_type": "4 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Natural",
+        "cylinders": "In line",
+        "bore_stroke": "89 / 92",
+        "displacement": "1.1",
+        "compression": "18:1",
+        "fuel_110": "7.4",
+        "fuel_100": "6.2",
+        "fuel_75": "4.5",
+        "fuel_50": "3.2",
+        "oil_capacity": "12",
+        "coolant_capacity": "15"
+      },
+      "alternator": {
+        "model": "SF184ES"
+      },
+      "dimensions": {
+        "wlh": "900x2100x1210",
+        "w": 900,
+        "l": 2100,
+        "h": 1210,
+        "weight": "900",
+        "fuel_tank": "90"
+      }
+    },
+    {
+      "file": "WIRMAN 40 KVA",
+      "code": "WM-40 KVA",
+      "kva_short": "40",
+      "rates": {
+        "kva": [
+          "40",
+          "36"
+        ],
+        "kw": [
+          "32",
+          "29"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "32",
+        "model": "W-400D",
+        "engine_type": "4 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Natural",
+        "cylinders": "In line",
+        "bore_stroke": "102 x 118",
+        "displacement": "3.8",
+        "compression": "18:1",
+        "fuel_110": "11",
+        "fuel_100": "9",
+        "fuel_75": "7",
+        "fuel_50": "5",
+        "oil_capacity": "13",
+        "coolant_capacity": "16.5"
+      },
+      "alternator": {
+        "model": "SF184G"
+      },
+      "dimensions": {
+        "wlh": "900x2100x1210",
+        "w": 900,
+        "l": 2100,
+        "h": 1210,
+        "weight": "950",
+        "fuel_tank": "100"
+      }
+    },
+    {
+      "file": "WIRMAN 55 KVA",
+      "code": "WM-55 KVA",
+      "kva_short": "55",
+      "rates": {
+        "kva": [
+          "55",
+          "50"
+        ],
+        "kw": [
+          "44",
+          "40"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "44",
+        "model": "W-550D",
+        "engine_type": "4 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Natural",
+        "cylinders": "In line",
+        "bore_stroke": "102 x 118",
+        "displacement": "3.87",
+        "compression": "18:1",
+        "fuel_110": "14.5",
+        "fuel_100": "13",
+        "fuel_75": "10",
+        "fuel_50": "8",
+        "oil_capacity": "14",
+        "coolant_capacity": "17.2"
+      },
+      "alternator": {
+        "model": "SF224C"
+      },
+      "dimensions": {
+        "wlh": "980x2450x1300",
+        "w": 980,
+        "l": 2450,
+        "h": 1300,
+        "weight": "980",
+        "fuel_tank": "120"
+      }
+    },
+    {
+      "file": "WIRMAN 70 KVA",
+      "code": "WM-70 KVA",
+      "kva_short": "70",
+      "rates": {
+        "kva": [
+          "70",
+          "65"
+        ],
+        "kw": [
+          "56",
+          "52"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "56",
+        "model": "W-700D",
+        "engine_type": "4 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "In line",
+        "bore_stroke": "105 x 118",
+        "displacement": "4.087",
+        "compression": "18:1",
+        "fuel_110": "16",
+        "fuel_100": "15",
+        "fuel_75": "12",
+        "fuel_50": "9",
+        "oil_capacity": "15",
+        "coolant_capacity": "19"
+      },
+      "alternator": {
+        "model": "SF224D"
+      },
+      "dimensions": {
+        "wlh": "980x2450x1300",
+        "w": 980,
+        "l": 2450,
+        "h": 1300,
+        "weight": "1050",
+        "fuel_tank": "135"
+      }
+    },
+    {
+      "file": "WIRMAN 90 KVA",
+      "code": "WM-90 KVA",
+      "kva_short": "90",
+      "rates": {
+        "kva": [
+          "90",
+          "82"
+        ],
+        "kw": [
+          "72",
+          "66"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "72",
+        "model": "W-900D",
+        "engine_type": "4 Stroke - Diesel",
+        "injection": "Turbo Charged",
+        "aspiration": "Natural",
+        "cylinders": "In line",
+        "bore_stroke": "112 x 135",
+        "displacement": "5.32",
+        "compression": "17:1",
+        "fuel_110": "21",
+        "fuel_100": "19",
+        "fuel_75": "16",
+        "fuel_50": "12",
+        "oil_capacity": "15",
+        "coolant_capacity": "20"
+      },
+      "alternator": {
+        "model": "SF224F"
+      },
+      "dimensions": {
+        "wlh": "980x2450x1300",
+        "w": 980,
+        "l": 2450,
+        "h": 1300,
+        "weight": "1160",
+        "fuel_tank": "140"
+      }
+    },
+    {
+      "file": "WIRMAN 125 KVA",
+      "code": "WM-125 KVA",
+      "kva_short": "125",
+      "rates": {
+        "kva": [
+          "125",
+          "114"
+        ],
+        "kw": [
+          "100",
+          "91"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "100",
+        "model": "W-012CA",
+        "engine_type": "6 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "In line",
+        "bore_stroke": "115 / 135",
+        "displacement": "6.87",
+        "compression": "18:1",
+        "fuel_110": "22.3",
+        "fuel_100": "20",
+        "fuel_75": "17.5",
+        "fuel_50": "13",
+        "oil_capacity": "18",
+        "coolant_capacity": "25"
+      },
+      "alternator": {
+        "model": "SF274C"
+      },
+      "dimensions": {
+        "wlh": "1080x2850x1600",
+        "w": 1080,
+        "l": 2850,
+        "h": 1600,
+        "weight": "1550",
+        "fuel_tank": "160"
+      }
+    },
+    {
+      "file": "WIRMAN 150 KVA",
+      "code": "WM-150 KVA",
+      "kva_short": "150",
+      "rates": {
+        "kva": [
+          "150",
+          "136"
+        ],
+        "kw": [
+          "120",
+          "109"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "120",
+        "model": "W-015CA",
+        "engine_type": "6 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "In line",
+        "bore_stroke": "115 / 135",
+        "displacement": "6.95",
+        "compression": "18:1",
+        "fuel_110": "23",
+        "fuel_100": "21",
+        "fuel_75": "18",
+        "fuel_50": "14",
+        "oil_capacity": "20",
+        "coolant_capacity": "30"
+      },
+      "alternator": {
+        "model": "SF274D"
+      },
+      "dimensions": {
+        "wlh": "1080x2850x1600",
+        "w": 1080,
+        "l": 2850,
+        "h": 1600,
+        "weight": "1615",
+        "fuel_tank": "165"
+      }
+    },
+    {
+      "file": "WIRMAN 180 KVA",
+      "code": "WM-180 KVA",
+      "kva_short": "180",
+      "rates": {
+        "kva": [
+          "180",
+          "164"
+        ],
+        "kw": [
+          "144",
+          "131"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "144",
+        "model": "W-018CX",
+        "engine_type": "6 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "In line",
+        "bore_stroke": "120 / 135",
+        "displacement": "7.1",
+        "compression": "17:5",
+        "fuel_110": "31",
+        "fuel_100": "29",
+        "fuel_75": "24",
+        "fuel_50": "17",
+        "oil_capacity": "22",
+        "coolant_capacity": "35"
+      },
+      "alternator": {
+        "model": "SF274E"
+      },
+      "dimensions": {
+        "wlh": "1080x2850x1600",
+        "w": 1080,
+        "l": 2850,
+        "h": 1600,
+        "weight": "1750",
+        "fuel_tank": "190"
+      }
+    },
+    {
+      "file": "WIRMAN 220 KVA",
+      "code": "WM-220 KVA",
+      "kva_short": "220",
+      "rates": {
+        "kva": [
+          "220",
+          "200"
+        ],
+        "kw": [
+          "176",
+          "160"
+        ],
+        "speed": [
+          "1500",
+          "1500"
+        ],
+        "voltage": [
+          "400 / 230",
+          "400 / 230"
+        ],
+        "pf": [
+          "0.8",
+          "0.8"
+        ]
+      },
+      "engine": {
+        "rated_output": "176",
+        "model": "W-022VW",
+        "engine_type": "6 Stroke - Diesel",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "In line",
+        "bore_stroke": "111 / 139",
+        "displacement": "16:4:1",
+        "compression": "16:4:1",
+        "fuel_110": "33",
+        "fuel_100": "31.4",
+        "fuel_75": "25.2",
+        "fuel_50": "18.5",
+        "oil_capacity": "25",
+        "coolant_capacity": "40"
+      },
+      "alternator": {
+        "model": "SF274G"
+      },
+      "dimensions": {
+        "wlh": "1130x3100x1610",
+        "w": 1130,
+        "l": 3100,
+        "h": 1610,
+        "weight": "1855",
+        "fuel_tank": "200"
+      }
+    }
+  ]
+}

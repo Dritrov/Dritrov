@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ m.code }} DIESEL GENERATOR SET</title>
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;src:url('{{ assets }}/fonts/Inter-Variable.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:500;src:url('{{ assets }}/fonts/BarlowCondensed-500.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:600;src:url('{{ assets }}/fonts/BarlowCondensed-600.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;src:url('{{ assets }}/fonts/BarlowCondensed-700.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:800;src:url('{{ assets }}/fonts/BarlowCondensed-800.woff2') format('woff2');}
+
+:root{
+  --navy:#0B2740; --navy-2:#153B5E; --navy-3:#1E4D78;
+  --amber:#F2A900; --amber-2:#FFC53D;
+  --ink:#16202B; --muted:#5B6877; --line:#D6DDE5; --line-2:#E9EDF1;
+  --bg:#F3F5F8; --white:#FFFFFF;
+  --cond:'Barlow Condensed', 'Arial Narrow', 'Liberation Sans', sans-serif;
+  --sans:'Inter', 'Liberation Sans', Arial, sans-serif;
+}
+@page{ size:A4; margin:0; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#fff; color:var(--ink); font-family:var(--sans); font-size:8.1pt; line-height:1.28; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.page{ position:relative; width:210mm; height:297mm; padding:0 12mm 16mm 12mm; overflow:hidden; page-break-after:always; background:#fff; }
+.page:last-child{ page-break-after:auto; }
+
+/* ---------- top bar ---------- */
+.topbar{ height:14mm; margin:0 -12mm 0 -12mm; padding:0 12mm; display:flex; align-items:center; justify-content:space-between; border-bottom:0.7mm solid var(--amber); }
+.brand{ display:flex; align-items:center; gap:2.4mm; }
+.brand .mark{ width:8mm; height:8mm; background:var(--navy); border-radius:1.2mm; display:flex; align-items:center; justify-content:center; }
+.brand .mark svg{ width:5.6mm; height:5.6mm; }
+.brand .word{ font-family:var(--cond); font-weight:800; font-size:20pt; letter-spacing:0.09em; color:var(--navy); line-height:1; }
+.topbar .doc{ text-align:right; font-family:var(--cond); font-weight:600; font-size:10.5pt; letter-spacing:0.08em; color:var(--muted); text-transform:uppercase; line-height:1.15; }
+.topbar .doc b{ display:block; color:var(--navy); font-weight:700; font-size:12pt; }
+
+/* ---------- hero ---------- */
+.hero{ margin:0 -12mm; padding:6mm 12mm 6mm; background:linear-gradient(105deg, var(--navy) 0%, var(--navy-2) 62%, var(--navy-3) 100%); color:#fff; display:grid; grid-template-columns:1fr 98mm; gap:6mm; align-items:stretch; position:relative; overflow:hidden; }
+.hero:before{ content:""; position:absolute; right:-30mm; top:-40mm; width:110mm; height:110mm; border-radius:50%; background:rgba(255,255,255,0.035); }
+.hero .kicker{ font-family:var(--cond); font-weight:600; font-size:11pt; letter-spacing:0.16em; text-transform:uppercase; color:var(--amber-2); }
+.hero h1{ margin:1mm 0 2mm; font-family:var(--cond); font-weight:800; font-size:46pt; line-height:0.92; letter-spacing:0.01em; }
+.hero h1 small{ display:block; font-size:16pt; font-weight:600; letter-spacing:0.08em; color:rgba(255,255,255,0.85); margin-top:2mm; }
+.hero .chip{ display:inline-block; margin-top:3.5mm; padding:1.6mm 3mm; border:0.3mm solid rgba(255,255,255,0.45); border-radius:1mm; font-family:var(--cond); font-weight:600; font-size:9.5pt; letter-spacing:0.12em; text-transform:uppercase; }
+.hero .std{ margin-top:5mm; display:flex; gap:6mm; }
+.hero .std div{ font-family:var(--cond); font-weight:500; font-size:9.5pt; letter-spacing:0.05em; color:rgba(255,255,255,0.75); text-transform:uppercase; }
+.hero .std div b{ display:block; font-size:15pt; font-weight:700; color:#fff; letter-spacing:0; }
+
+.rates{ background:#fff; color:var(--ink); border-radius:1.5mm; overflow:hidden; box-shadow:0 2mm 6mm rgba(0,0,0,0.25); align-self:center; }
+.rates .cap{ background:var(--amber); color:var(--navy); font-family:var(--cond); font-weight:700; font-size:10.5pt; letter-spacing:0.14em; padding:1.8mm 3.5mm; text-transform:uppercase; }
+.rates table{ width:100%; border-collapse:collapse; }
+.rates th,.rates td{ padding:1.6mm 3mm; white-space:nowrap; text-align:center; border-bottom:0.2mm solid var(--line-2); }
+.rates th{ font-family:var(--cond); font-weight:700; font-size:9.5pt; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); background:var(--bg); }
+.rates th:first-child,.rates td:first-child{ text-align:left; }
+.rates td:first-child{ color:var(--muted); font-weight:500; }
+.rates td.v{ font-family:var(--cond); font-weight:700; font-size:13pt; color:var(--navy); }
+.rates td.u{ color:var(--muted); font-size:7.8pt; text-align:right; }
+.rates tr:last-child td{ border-bottom:none; }
+
+/* ---------- sections ---------- */
+.section-title{ margin:5mm 0 2.6mm; display:flex; align-items:center; gap:3mm; font-family:var(--cond); font-weight:700; font-size:15pt; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); }
+.section-title:after{ content:""; flex:1; height:0.25mm; background:var(--line); }
+.section-title .tag{ font-size:9pt; font-weight:600; letter-spacing:0.12em; color:var(--muted); }
+.grid-2{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6mm; }
+.grid-2.wide{ grid-template-columns:minmax(0,1.12fr) minmax(0,0.88fr); }
+
+.spec{ border:0.25mm solid var(--line); border-radius:1.5mm; overflow:hidden; }
+.spec .cap{ display:flex; align-items:center; justify-content:space-between; background:var(--navy); color:#fff; font-family:var(--cond); font-weight:700; font-size:11pt; letter-spacing:0.12em; text-transform:uppercase; padding:2mm 3.5mm; }
+.spec .cap span{ font-weight:500; letter-spacing:0.06em; font-size:9pt; color:var(--amber-2); }
+.spec table{ width:100%; border-collapse:collapse; }
+.spec td{ padding:1.25mm 3mm; border-bottom:0.2mm solid var(--line-2); vertical-align:middle; }
+.spec tr:nth-child(even) td{ background:#FAFBFC; }
+.spec tr:last-child td{ border-bottom:none; }
+.spec td.l{ color:var(--muted); width:50%; }
+.spec td.v{ font-weight:600; color:var(--ink); white-space:nowrap; }
+.spec td.u{ color:var(--muted); font-size:7.6pt; text-align:right; white-space:nowrap; width:11mm; }
+
+.dims{ margin-top:4.5mm; }
+.dims .body{ display:grid; grid-template-columns:36mm minmax(0,1fr); gap:3mm; align-items:center; padding:2mm 3mm; }
+.dims svg{ width:100%; height:auto; display:block; }
+.dims table{ width:100%; }
+.dims td.v{ white-space:nowrap; }
+.dims td.v span{ color:var(--muted); font-size:7.6pt; font-weight:400; margin-left:1mm; }
+.dims table td{ padding:1.6mm 1.5mm; }
+.dims table td.l{ width:auto; white-space:nowrap; padding-left:0; }
+.dims table td.u{ width:auto; padding-right:0; }
+.dims .variant{ font-family:var(--cond); font-weight:600; letter-spacing:0.14em; font-size:9pt; color:var(--muted); text-transform:uppercase; }
+
+/* ---------- bullet lists ---------- */
+.card{ border:0.25mm solid var(--line); border-radius:1.5mm; padding:3mm 4mm 2.5mm; background:#fff; }
+.card h3{ margin:0 0 2mm; font-family:var(--cond); font-weight:700; font-size:12.5pt; letter-spacing:0.08em; text-transform:uppercase; color:var(--navy); display:flex; align-items:center; gap:2.5mm; }
+.card h3 i{ width:2.2mm; height:2.2mm; background:var(--amber); border-radius:0.4mm; display:inline-block; }
+ul.ticks{ list-style:none; margin:0; padding:0; }
+ul.ticks li{ position:relative; padding:0 0 0 5.5mm; margin:0 0 1.4mm; }
+ul.ticks li:before{ content:""; position:absolute; left:0; top:0.9mm; width:3.2mm; height:3.2mm; border-radius:50%; background:var(--navy); }
+ul.ticks li:after{ content:""; position:absolute; left:0.95mm; top:1.7mm; width:1.3mm; height:0.7mm; border-left:0.45mm solid #fff; border-bottom:0.45mm solid #fff; transform:rotate(-45deg); }
+ul.dots{ list-style:none; margin:0; padding:0; columns:2; column-gap:6mm; }
+ul.dots li{ position:relative; padding-left:4mm; margin-bottom:1.05mm; break-inside:avoid; }
+ul.dots li:before{ content:""; position:absolute; left:0; top:1.3mm; width:1.6mm; height:1.6mm; background:var(--amber); border-radius:0.3mm; }
+ul.dots.one{ columns:1; }
+
+.cert{ display:grid; grid-template-columns:1fr 1.3fr; gap:6mm; }
+.cert .iso{ background:var(--navy); color:#fff; border-radius:1.5mm; padding:4.5mm 5mm; display:flex; flex-direction:column; justify-content:center; }
+.cert .iso .big{ font-family:var(--cond); font-weight:700; font-size:15pt; letter-spacing:0.02em; line-height:1.15; margin-bottom:2.5mm; }
+.cert .iso .badges{ display:flex; gap:2mm; flex-wrap:wrap; }
+.cert .iso .badges span{ border:0.3mm solid rgba(255,255,255,0.5); border-radius:1mm; padding:1.2mm 2.5mm; font-family:var(--cond); font-weight:600; font-size:10pt; letter-spacing:0.06em; }
+.cert .iso .ce{ margin-top:3mm; font-size:8pt; color:rgba(255,255,255,0.8); }
+.defs{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.defs p{ margin:0; text-align:justify; color:#2B3642; }
+.defs b{ display:block; font-family:var(--cond); font-weight:700; font-size:12pt; letter-spacing:0.06em; color:var(--navy); text-transform:uppercase; margin-bottom:1.5mm; }
+.note{ margin-top:3.5mm; padding:2.5mm 3.5mm; background:var(--bg); border-left:0.9mm solid var(--amber); border-radius:0.6mm; color:var(--muted); }
+.note b{ color:var(--navy); }
+
+/* ---------- control unit ---------- */
+.cu-hero{ margin:0 -12mm; padding:4.5mm 12mm; background:var(--bg); border-bottom:0.25mm solid var(--line); display:grid; grid-template-columns:1.1fr 1fr; gap:8mm; align-items:center; }
+.cu-hero svg{ width:100%; height:auto; display:block; filter:drop-shadow(0 1.5mm 3mm rgba(0,0,0,0.18)); }
+.cu-hero h2{ margin:0 0 1mm; font-family:var(--cond); font-weight:800; font-size:24pt; letter-spacing:0.03em; color:var(--navy); line-height:1; }
+.cu-hero .sub{ font-family:var(--cond); font-weight:600; font-size:10pt; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3.5mm; }
+ol.callouts{ list-style:none; margin:0; padding:0; }
+ol.callouts li{ display:flex; align-items:center; gap:2.5mm; margin-bottom:1.1mm; font-weight:500; }
+ol.callouts li span{ width:5mm; height:5mm; border-radius:50%; background:var(--amber); color:var(--navy); font-family:var(--cond); font-weight:800; font-size:9.5pt; display:flex; align-items:center; justify-content:center; flex:none; }
+.related table{ width:100%; border-collapse:collapse; }
+.related th{ text-align:left; font-family:var(--cond); font-weight:700; letter-spacing:0.12em; font-size:9.5pt; color:var(--muted); text-transform:uppercase; padding:0 0 1.5mm; border-bottom:0.25mm solid var(--line); }
+.related td{ padding:1.6mm 0 1.6mm 5mm; border-bottom:0.2mm solid var(--line-2); position:relative; }
+.related td:before{ content:"\2014"; color:var(--amber); position:absolute; left:0; font-weight:700; }
+
+/* ---------- footer ---------- */
+.footer{ position:absolute; left:12mm; right:12mm; bottom:7mm; display:flex; align-items:center; justify-content:space-between; font-family:var(--cond); font-weight:600; font-size:9pt; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); border-top:0.25mm solid var(--line); padding-top:2.5mm; }
+.footer b{ color:var(--navy); font-weight:700; }
+.footer .pg{ font-family:var(--cond); font-weight:700; color:var(--navy); }
+.footer .site{ color:var(--navy); letter-spacing:0.04em; text-transform:none; font-family:var(--sans); font-weight:600; font-size:8pt; }
+</style>
+</head>
+<body>
+
+{% macro topbar() -%}
+<div class="topbar">
+  <div class="brand">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M13.5 2 5 13.5h6L10.5 22 19 10.5h-6z" fill="#F2A900"/></svg></div>
+    <div class="word">{{ d.brand }}</div>
+  </div>
+  <div class="doc">{{ d.series_line }}<b>{{ m.code }}</b></div>
+</div>
+{%- endmacro %}
+
+{% macro footer(n, total) -%}
+<div class="footer">
+  <div><b>{{ d.brand }}</b> &nbsp;·&nbsp; {{ m.code }} {{ d.series_line }}</div>
+  <div class="site">{{ d.website }}</div>
+  <div class="pg">{{ n }} / {{ total }}</div>
+</div>
+{%- endmacro %}
+
+<!-- ============================ PAGE 1 ============================ -->
+<div class="page">
+  {{ topbar() }}
+
+  <div class="hero">
+    <div>
+      <div class="kicker">{{ d.series_line }}</div>
+      <h1>{{ m.code }}<small>{{ d.series_line.split('/')[0] | trim }}</small></h1>
+      <div class="chip">{{ d.tagline }}</div>
+    </div>
+    <div class="rates">
+      <div class="cap">{{ d.rates.heading }}</div>
+      <table>
+        <tr>{% for c in d.rates.columns %}<th>{{ c }}</th>{% endfor %}<th></th></tr>
+        {% for r in d.rates.rows %}
+        <tr>
+          <td>{{ r.label }}</td>
+          <td class="v">{{ m.rates[r.key][0] }}</td>
+          <td class="v">{{ m.rates[r.key][1] }}</td>
+          <td class="u">{{ r.unit }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <div class="section-title">Technical Specifications <span class="tag">{{ d.spec_heading }}</span></div>
+
+  <div class="grid-2 wide">
+    <div class="spec">
+      <div class="cap">Engine Specifications <span>{{ m.engine.model }}</span></div>
+      <table>
+        {% for r in d.engine_rows %}
+        <tr><td class="l">{{ r.label }}</td><td class="v">{{ m.engine[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div>
+      <div class="spec">
+        <div class="cap">Alternator Specifications <span>{{ m.alternator.model }}</span></div>
+        <table>
+          {% for r in d.alternator_rows %}
+          <tr><td class="l">{{ r.label }}</td><td class="v">{{ m.alternator[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="spec dims">
+        <div class="cap">{{ d.dimensions.heading }} <span>{{ d.dimensions.variant }}</span></div>
+        <div class="body">
+          {{ dims_svg(m.dimensions) }}
+          <table>
+            {% for r in d.dimensions.rows %}
+            <tr><td class="l">{{ r.label }}</td><td class="v">{{ m.dimensions[r.key] }} <span>{{ r.unit }}</span></td></tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ footer(1, 3) }}
+</div>
+
+<!-- ============================ PAGE 2 ============================ -->
+<div class="page">
+  {{ topbar() }}
+
+  <div class="section-title">Scope of Supply</div>
+  <div class="grid-2">
+    <div class="card">
+      <h3><i></i>{{ d.features.heading }}</h3>
+      <ul class="ticks">{% for f in d.features['items'] %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+    <div class="card">
+      <h3><i></i>{{ d.canopy.heading }}</h3>
+      <ul class="ticks">{% for f in d.canopy['items'] %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+
+  <div class="section-title">Quality &amp; Compliance</div>
+  <div class="cert">
+    <div class="iso">
+      <div class="big">{{ d.certifications.iso }}</div>
+      <div class="badges"><span>ISO 9001</span><span>ISO 14001</span><span>OHSAS 18001</span><span>CE</span></div>
+      <div class="ce">{{ d.certifications.ce_intro }}</div>
+    </div>
+    <div class="card">
+      <h3><i></i>EC Directives</h3>
+      <ul class="dots one">{% for x in d.certifications.directives %}<li>{{ x }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+
+  <div class="section-title">Power Rating Definitions</div>
+  <div class="defs">
+    {% for x in d.definitions %}
+    <p><b>{{ x.title }}</b>{{ x.text }}</p>
+    {% endfor %}
+  </div>
+  <div class="note"><b>Note:</b> {{ d.note }}</div>
+
+  {{ footer(2, 3) }}
+</div>
+
+<!-- ============================ PAGE 3 ============================ -->
+<div class="page">
+  {{ topbar() }}
+
+  <div class="cu-hero">
+    <div>{{ panel_svg() }}</div>
+    <div>
+      <div class="sub">Control Unit</div>
+      <h2>DSE6120 MKIII</h2>
+      <div class="sub">Front panel</div>
+      <ol class="callouts">
+        {% for lbl in d.control_unit.panel_labels %}<li><span>{{ loop.index }}</span>{{ lbl }}</li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+
+  <div class="section-title">{{ d.control_unit.key_features_heading }}</div>
+  <ul class="dots">{% for f in d.control_unit.key_features %}<li>{{ f }}</li>{% endfor %}</ul>
+
+  <div class="grid-2" style="margin-top:4.5mm">
+    <div class="card">
+      <h3><i></i>{{ d.control_unit.key_benefits_heading }}</h3>
+      <ul class="ticks">{% for f in d.control_unit.key_benefits %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+    <div class="card related">
+      <h3><i></i>{{ d.control_unit.related_heading }}</h3>
+      <table>
+        <tr><th>{{ d.control_unit.related_title_col }}</th></tr>
+        {% for r in d.control_unit.related %}<tr><td>{{ r }}</td></tr>{% endfor %}
+      </table>
+    </div>
+  </div>
+
+  {{ footer(3, 3) }}
+</div>
+
+</body>
+</html>
