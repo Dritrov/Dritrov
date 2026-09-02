@@ -221,6 +221,68 @@ ol.callouts li span{ background:#fff; color:var(--ink); border:0.35mm solid var(
 .footer b,.footer .pg,.footer .site{ color:var(--ink); }
 {% endif %}
 
+{% if t.key == 'premium' %}
+/* ================= PREMIUM 3D ================= */
+.page{ background:#F7F8FA; }
+.topbar{ background:linear-gradient(180deg, #161B23 0%, #0C0F14 100%); border-bottom:0.35mm solid var(--a); box-shadow:0 1mm 3mm rgba(0,0,0,0.35); position:relative; z-index:2; }
+.brand .mark{ background:linear-gradient(145deg, var(--a2), var(--a)); box-shadow:0 0.6mm 1.5mm rgba(0,0,0,0.5), inset 0 0.3mm 0 rgba(255,255,255,0.4); }
+.brand .word{ color:var(--a2); background:linear-gradient(180deg, #F3E2A0 0%, var(--a) 60%, #9C7D16 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.topbar .doc{ color:rgba(255,255,255,0.5); }
+.topbar .doc b{ color:#fff; }
+.hero{ background:radial-gradient(ellipse at 76% 45%, rgba(201,162,39,0.22) 0%, rgba(201,162,39,0) 42%), linear-gradient(120deg, #0C0F14 0%, #161B23 50%, #1F2631 100%); padding:2mm 12mm 12.5mm; grid-template-columns:minmax(0,1fr) 50mm; gap:6mm; align-items:end; }
+.hero .rates-label{ margin-top:4mm; font-family:var(--cond); font-weight:600; font-size:9.5pt; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+.stats{ position:relative; z-index:3; display:grid; grid-template-columns:1.15fr 1.15fr 1fr 1fr 1fr; gap:2.5mm; margin-top:-9mm; }
+.stat{ background:linear-gradient(165deg, #262D38 0%, #12161C 100%); border:0.25mm solid rgba(255,255,255,0.10); border-top:0.5mm solid rgba(255,255,255,0.18); border-radius:1.4mm; padding:2.4mm 3mm 2.2mm; color:#fff; box-shadow:0 2mm 5mm rgba(0,0,0,0.45), 0 0.4mm 1mm rgba(0,0,0,0.3), inset 0 0.35mm 0 rgba(255,255,255,0.10); }
+.stat.big{ border-top:0.6mm solid var(--a); }
+.stat .k{ font-family:var(--cond); font-weight:600; font-size:8pt; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); white-space:nowrap; }
+.stat .n{ font-family:var(--cond); font-weight:800; font-size:17pt; line-height:1; margin-top:0.8mm; white-space:nowrap; }
+.stat.big .n{ font-size:21pt; }
+.stat .n small{ font-size:9pt; font-weight:600; color:var(--a2); margin-left:1mm; }
+.stat .n2{ font-family:var(--cond); font-weight:500; font-size:9.5pt; color:rgba(255,255,255,0.7); margin-top:0.6mm; }
+.theme-premium .section-title{ margin-top:3.5mm; }
+.theme-premium .hero h1{ font-size:42pt; margin-bottom:1.5mm; }
+.hero:before{ display:none; }
+.hero:after{ content:""; position:absolute; left:0; right:0; bottom:0; height:0.5mm; background:linear-gradient(90deg, transparent, var(--a), transparent); }
+.hero .kicker{ color:var(--a2); }
+.hero h1{ font-size:44pt; text-shadow:0 1.2mm 2.5mm rgba(0,0,0,0.6), 0 0.3mm 0 rgba(255,255,255,0.12); }
+.hero h1 small{ color:rgba(255,255,255,0.7); }
+.hero .chip{ border:0.25mm solid rgba(201,162,39,0.6); color:var(--a2); background:rgba(201,162,39,0.08); box-shadow:inset 0 0.3mm 0 rgba(255,255,255,0.08); }
+.hero .art svg{ width:100%; height:auto; display:block; }
+.tile{ background:linear-gradient(165deg, #232A35 0%, #12161C 100%); border:0.25mm solid rgba(255,255,255,0.09); box-shadow:0 1.6mm 4mm rgba(0,0,0,0.55), inset 0 0.35mm 0 rgba(255,255,255,0.10); color:#fff; }
+.tile.big{ border-top:0.6mm solid var(--a); }
+.tile .k{ color:rgba(255,255,255,0.55); }
+.tile .n{ color:#fff; }
+.tile .n small{ color:var(--a2); }
+.tile .n2{ color:rgba(255,255,255,0.8); }
+.tile .n2 small{ color:rgba(255,255,255,0.5); }
+.section-title{ color:var(--p); }
+.section-title:after{ background:linear-gradient(90deg, var(--a) 0, var(--a) 14mm, var(--line) 14mm); }
+.spec{ border:none; background:#fff; box-shadow:0 1.2mm 3.5mm rgba(12,15,20,0.14), 0 0.25mm 0.8mm rgba(12,15,20,0.10); }
+.spec .cap{ background:linear-gradient(180deg, #1B2129 0%, #0C0F14 100%); border-bottom:0.45mm solid var(--a); }
+.spec .cap span{ color:var(--a2); }
+.spec tr:nth-child(even) td{ background:#F9FAFB; }
+.spec td.v{ color:var(--p); }
+.dims .wlh{ background:linear-gradient(180deg, #F3F5F8, #E9EDF1); }
+.dims .wlh .v{ color:var(--p); }
+.card{ border:none; background:#fff; box-shadow:0 1.2mm 3.5mm rgba(12,15,20,0.14), 0 0.25mm 0.8mm rgba(12,15,20,0.10); }
+.card h3 i{ background:linear-gradient(145deg, var(--a2), var(--a)); }
+ul.ticks li:before{ background:linear-gradient(145deg, var(--a2), var(--a)); box-shadow:0 0.3mm 0.8mm rgba(0,0,0,0.25); }
+ul.ticks li:after{ border-color:var(--p); }
+ul.dots li:before{ background:linear-gradient(145deg, var(--a2), var(--a)); }
+.cert .iso{ background:linear-gradient(120deg, #0C0F14 0%, #1F2631 100%); border-top:0.6mm solid var(--a); box-shadow:0 1.6mm 4mm rgba(0,0,0,0.35); }
+.cert .iso .badges span{ border-color:rgba(201,162,39,0.6); color:var(--a2); }
+.note{ background:#fff; box-shadow:0 0.8mm 2.5mm rgba(12,15,20,0.10); border-left:0.9mm solid var(--a); }
+.cu-hero{ background:radial-gradient(ellipse at 20% 50%, rgba(201,162,39,0.16) 0%, rgba(201,162,39,0) 45%), linear-gradient(120deg, #0C0F14 0%, #1F2631 100%); color:#fff; border-bottom:none; box-shadow:inset 0 -0.5mm 0 var(--a); }
+.cu-hero svg{ filter:drop-shadow(0 3mm 5mm rgba(0,0,0,0.6)); }
+.cu-hero h2{ color:#fff; text-shadow:0 1mm 2mm rgba(0,0,0,0.6); }
+.cu-hero .sub{ color:var(--a2); }
+ol.callouts li{ color:#fff; }
+ol.callouts li span{ background:linear-gradient(145deg, var(--a2), var(--a)); box-shadow:0 0.4mm 1mm rgba(0,0,0,0.5); }
+.footer{ left:0; right:0; bottom:0; padding:3mm 12mm; background:linear-gradient(180deg, #161B23, #0C0F14); border:none; border-top:0.3mm solid var(--a); color:rgba(255,255,255,0.55); }
+.footer b,.footer .site{ color:#fff; }
+.footer .pg{ color:var(--a2); }
+{% endif %}
+
 {% if t.key == 'graphite' %}
 /* ================= GRAPHITE ================= */
 .topbar{ background:var(--p); border-bottom:none; }
@@ -326,6 +388,23 @@ ol.callouts li{ color:#fff; }
       <div><div class="k">Standard Voltage</div><div class="n">{{ m.rates.voltage[0] }}<small>V</small></div><div class="n2">Three-phase</div></div>
       <div><div class="k">Power Factor</div><div class="n">{{ m.rates.pf[0] }}</div><div class="n2">Cos Phi</div></div>
     </div>
+  </div>
+  {% elif t.key == 'premium' %}
+  <div class="hero">
+    <div>
+      <div class="kicker">{{ d.series_line }}</div>
+      <h1>{{ m.code }}<small>{{ d.series_line.split('/')[0] | trim }}</small></h1>
+      <div class="chip">{{ d.tagline }}</div>
+      <div class="rates-label">{{ d.rates.heading }}</div>
+    </div>
+    <div class="art">{{ genset_svg(m.dimensions) }}</div>
+  </div>
+  <div class="stats">
+    <div class="stat big"><div class="k">{{ d.rates.columns[1] }} Power</div><div class="n">{{ m.rates.kva[0] }}<small>kVA</small></div><div class="n2">{{ m.rates.kw[0] }} kW</div></div>
+    <div class="stat big"><div class="k">{{ d.rates.columns[2] }} Power</div><div class="n">{{ m.rates.kva[1] }}<small>kVA</small></div><div class="n2">{{ m.rates.kw[1] }} kW</div></div>
+    <div class="stat"><div class="k">Speed</div><div class="n">{{ m.rates.speed[0] }}<small>rpm</small></div><div class="n2">50 Hz</div></div>
+    <div class="stat"><div class="k">Standard Voltage</div><div class="n">{{ m.rates.voltage[0] }}<small>V</small></div><div class="n2">Three-phase</div></div>
+    <div class="stat"><div class="k">Power Factor</div><div class="n">{{ m.rates.pf[0] }}</div><div class="n2">Cos Phi</div></div>
   </div>
   {% elif t.key == 'graphite' %}
   <div class="hero">

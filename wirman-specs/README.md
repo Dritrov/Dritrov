@@ -1,4 +1,4 @@
-# WIRMAN 25–220 kVA datasheets — redesigned, four themes
+# WIRMAN 25–220 kVA datasheets — redesigned, five themes
 
 Redesigned technical datasheets for the WIRMAN diesel generator sets
 (WM-25 … WM-220 kVA, 50 Hz). The data comes from the original 2023 PDFs in
@@ -22,9 +22,10 @@ wirman-specs/
 | `classic`    | navy band header, amber accents, ratings table in a white card       |
 | `industrial` | charcoal + red, diagonal stripe, ratings as stat tiles, flat tables  |
 | `minimal`    | white, black rules, teal accent, large editorial model number        |
+| `premium`    | graphite + gold, layered 3D cards, isometric shaded genset illustration generated from each model's W×L×H |
 | `graphite`   | dark graphite gradient, electric-blue accents, glass rating cards    |
 
-All four share the same three-page structure: (1) ratings + engine /
+All five share the same three-page structure: (1) ratings + engine /
 alternator / dimensions, (2) scope of supply, compliance, rating definitions,
 (3) DSE6120 MKIII control unit. Colours are defined in `THEMES` in
 `build.py`; theme-specific layout rules live in `{% if t.key == ... %}`

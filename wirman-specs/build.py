@@ -12,7 +12,7 @@ Usage:
     python3 build.py --no-preview        # skip PNG previews
 
 Themes: classic (navy/amber), industrial (charcoal/red), minimal (white/teal),
-graphite (dark/electric blue). Output goes to output/<theme>/.
+premium (graphite/gold, 3D illustration), graphite (dark/electric blue). Output goes to output/<theme>/.
 """
 import json
 import os
@@ -36,6 +36,7 @@ THEMES = {
     "classic":    {"key": "classic",    "name": "Classic Navy",      "primary": "#0B2740", "primary2": "#153B5E", "primary3": "#1E4D78", "accent": "#F2A900", "accent2": "#FFC53D", "on_accent": "#0B2740"},
     "industrial": {"key": "industrial", "name": "Industrial Red",    "primary": "#1F2326", "primary2": "#2B3034", "primary3": "#3A4046", "accent": "#D7261E", "accent2": "#FF6A5F", "on_accent": "#FFFFFF"},
     "minimal":    {"key": "minimal",    "name": "Minimal Teal",      "primary": "#16202B", "primary2": "#16202B", "primary3": "#16202B", "accent": "#0E7C86", "accent2": "#14A3AF", "on_accent": "#FFFFFF"},
+    "premium":    {"key": "premium",    "name": "Premium 3D",        "primary": "#0C0F14", "primary2": "#161B23", "primary3": "#242B37", "accent": "#C9A227", "accent2": "#EAD27A", "on_accent": "#0C0F14"},
     "graphite":   {"key": "graphite",   "name": "Graphite Electric", "primary": "#14181D", "primary2": "#1C2128", "primary3": "#2A323C", "accent": "#2F80ED", "accent2": "#7FB3FF", "on_accent": "#FFFFFF"},
 }
 
@@ -104,6 +105,108 @@ def dims_svg(dim: dict, theme: dict) -> Markup:
 <rect x="{f(x0)}" y="{f(yb-3)}" width="{f(fw)}" height="3" fill="{amber}"/>
 {L_line}{L_txt}{H_line}{H_txt}{W_line}{W_txt}{unit}
 </svg>"""
+    return Markup(svg)
+
+
+def genset_svg(dim: dict, theme: dict) -> Markup:
+    """Isometric, shaded 3D illustration of the canopied genset, proportional to W x L x H."""
+    W, L, H = float(dim["w"]), float(dim["l"]), float(dim["h"])
+    s = 150.0 / L
+    Lp, Wp, Hp = L * s, W * s, H * s
+    base = Hp * 0.11                      # base frame height (px)
+    gold, gold2 = theme["accent"], theme["accent2"]
+    # isometric unit vectors
+    ux, uy = 0.866, 0.5                   # along L (right-down)
+    vx, vy = 0.866, -0.5                  # along W (right-up)
+    ox = 14.0
+    oy = 12.0 + Wp * 0.5 + Hp + base          # origin = bottom-front-left corner (of base)
+    vb_w = (Lp + Wp) * 0.866 + 30
+    vb_h = oy + Lp * 0.5 + 30
+
+    def P(u, v, h):  # point from local coords: u along L, v along W, h up
+        return (ox + u * ux + v * vx, oy + u * uy + v * vy - h)
+
+    def poly(pts, **kw):
+        attrs = " ".join(f'{k.replace("_", "-")}="{val}"' for k, val in kw.items())
+        return f'<polygon points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}" {attrs}/>'
+
+    # transforms for drawing in face-local coordinates (u right, v down)
+    def face_tf(u0, v0, h0, kind):
+        x, y = P(u0, v0, h0)
+        if kind == "front":   # local u -> along L, local v -> down
+            return f"matrix({ux:.4f},{uy:.4f},0,1,{x:.2f},{y:.2f})"
+        if kind == "side":    # local u -> along W, local v -> down
+            return f"matrix({vx:.4f},{vy:.4f},0,1,{x:.2f},{y:.2f})"
+        return f"matrix({ux:.4f},{uy:.4f},{vx:.4f},{vy:.4f},{x:.2f},{y:.2f})"  # top: u->L, v->W
+
+    zc = base                               # canopy bottom height
+    zt = base + Hp                          # canopy top height
+    # --- shadow
+    sh_cx, sh_cy = P(Lp * 0.55, Wp * 0.5, 0)
+    shadow = f'<ellipse cx="{sh_cx:.1f}" cy="{sh_cy + 6:.1f}" rx="{(Lp + Wp) * 0.55:.1f}" ry="{(Lp + Wp) * 0.16:.1f}" fill="#000" opacity="0.55" filter="url(#blur)"/>'
+    # --- base frame (dark steel)
+    bf = poly([P(0, 0, 0), P(Lp, 0, 0), P(Lp, 0, zc), P(0, 0, zc)], fill="url(#steelF)")
+    bs = poly([P(Lp, 0, 0), P(Lp, Wp, 0), P(Lp, Wp, zc), P(Lp, 0, zc)], fill="url(#steelS)")
+    pockets = "".join(
+        f'<rect x="{Lp * k:.1f}" y="{2:.1f}" width="{Lp * 0.09:.1f}" height="{base - 4:.1f}" fill="#05070A" opacity="0.8" transform="{face_tf(0, 0, zc, "front")}"/>'
+        for k in (0.18, 0.66)
+    )
+    # --- canopy faces
+    front = poly([P(0, 0, zc), P(Lp, 0, zc), P(Lp, 0, zt), P(0, 0, zt)], fill="url(#canF)")
+    side = poly([P(Lp, 0, zc), P(Lp, Wp, zc), P(Lp, Wp, zt), P(Lp, 0, zt)], fill="url(#canS)")
+    top = poly([P(0, 0, zt), P(Lp, 0, zt), P(Lp, Wp, zt), P(0, Wp, zt)], fill="url(#canT)")
+    edge = poly([P(0, 0, zc), P(Lp, 0, zc), P(Lp, 0, zt), P(0, 0, zt)], fill="none", stroke="rgba(255,255,255,0.35)", stroke_width="0.6")
+    edge2 = poly([P(Lp, 0, zc), P(Lp, Wp, zc), P(Lp, Wp, zt), P(Lp, 0, zt)], fill="none", stroke="rgba(0,0,0,0.25)", stroke_width="0.6")
+    # --- front-face details (local coords: width Lp, height Hp, v downwards from top)
+    tf = face_tf(0, 0, zt, "front")
+    louv = "".join(
+        f'<rect x="{Lp * 0.06:.1f}" y="{Hp * (0.16 + i * 0.075):.1f}" width="{Lp * 0.20:.1f}" height="{Hp * 0.035:.1f}" rx="0.6" fill="#2A313B" opacity="0.85"/>'
+        for i in range(9)
+    )
+    door = f'<rect x="{Lp * 0.31:.1f}" y="{Hp * 0.12:.1f}" width="{Lp * 0.34:.1f}" height="{Hp * 0.76:.1f}" rx="1.2" fill="none" stroke="#7B8590" stroke-width="0.7"/>'
+    handle = f'<rect x="{Lp * 0.60:.1f}" y="{Hp * 0.47:.1f}" width="{Lp * 0.025:.1f}" height="{Hp * 0.10:.1f}" rx="0.6" fill="#1B2027"/>'
+    brand = f'<text x="{Lp * 0.48:.1f}" y="{Hp * 0.36:.1f}" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="{Hp * 0.16:.1f}" fill="#2B333D" letter-spacing="1">WIRMAN</text>'
+    stripe = f'<rect x="0" y="{Hp * 0.86:.1f}" width="{Lp:.1f}" height="{Hp * 0.05:.1f}" fill="url(#goldH)"/>'
+    win_x, win_y, win_w, win_h = Lp * 0.71, Hp * 0.18, Lp * 0.22, Hp * 0.26
+    window = (
+        f'<rect x="{win_x:.1f}" y="{win_y:.1f}" width="{win_w:.1f}" height="{win_h:.1f}" rx="1" fill="#0F1318"/>'
+        f'<rect x="{win_x + 2:.1f}" y="{win_y + 2:.1f}" width="{win_w - 4:.1f}" height="{win_h - 4:.1f}" rx="0.8" fill="url(#screen)"/>'
+        f'<rect x="{win_x + 5:.1f}" y="{win_y + 6:.1f}" width="{win_w * 0.5:.1f}" height="1.6" fill="#0B2740" opacity="0.6"/>'
+        f'<rect x="{win_x + 5:.1f}" y="{win_y + 10:.1f}" width="{win_w * 0.35:.1f}" height="1.6" fill="#0B2740" opacity="0.45"/>'
+        f'<circle cx="{win_x + win_w * 0.82:.1f}" cy="{win_y + win_h + 6:.1f}" r="2.4" fill="#C8102E"/>'
+        f'<rect x="{win_x + win_w * 0.82 - 3.2:.1f}" y="{win_y + win_h + 3.4:.1f}" width="6.4" height="1" fill="#F5C400" opacity="0.9"/>'
+    )
+    gloss = f'<rect x="0" y="0" width="{Lp:.1f}" height="{Hp * 0.22:.1f}" fill="url(#glossV)"/>'
+    front_details = f'<g transform="{tf}">{louv}{door}{handle}{brand}{stripe}{window}{gloss}</g>'
+    # --- side face details (radiator grille)
+    ts = face_tf(Lp, 0, zt, "side")
+    grille = f'<rect x="{Wp * 0.12:.1f}" y="{Hp * 0.14:.1f}" width="{Wp * 0.76:.1f}" height="{Hp * 0.68:.1f}" rx="1" fill="#1D232B"/>' + "".join(
+        f'<rect x="{Wp * (0.16 + i * 0.09):.1f}" y="{Hp * 0.17:.1f}" width="{Wp * 0.045:.1f}" height="{Hp * 0.62:.1f}" fill="#3A434E"/>'
+        for i in range(8)
+    ) + f'<rect x="0" y="{Hp * 0.86:.1f}" width="{Wp:.1f}" height="{Hp * 0.05:.1f}" fill="url(#goldH)" opacity="0.8"/>'
+    side_details = f'<g transform="{ts}">{grille}</g>'
+    # --- top details: exhaust cap + lifting eye + seams
+    tt = face_tf(0, 0, zt, "top")
+    top_details = (
+        f'<g transform="{tt}">'
+        f'<rect x="{Lp * 0.31:.1f}" y="{Wp * 0.08:.1f}" width="{Lp * 0.34:.1f}" height="{Wp * 0.84:.1f}" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="0.6"/>'
+        f'<circle cx="{Lp * 0.12:.1f}" cy="{Wp * 0.62:.1f}" r="{Wp * 0.13:.1f}" fill="#8F98A3"/>'
+        f'<circle cx="{Lp * 0.12:.1f}" cy="{Wp * 0.62:.1f}" r="{Wp * 0.08:.1f}" fill="#2B333D"/>'
+        f'<rect x="{Lp * 0.47:.1f}" y="{Wp * 0.40:.1f}" width="{Lp * 0.06:.1f}" height="{Wp * 0.2:.1f}" rx="1" fill="#6E7883"/>'
+        f'</g>'
+    )
+    defs = f"""<defs>
+<filter id="blur" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>
+<linearGradient id="canF" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#E9EDF2"/><stop offset="0.55" stop-color="#C5CCD5"/><stop offset="1" stop-color="#9AA3AE"/></linearGradient>
+<linearGradient id="canS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#AEB6C0"/><stop offset="1" stop-color="#6F7883"/></linearGradient>
+<linearGradient id="canT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D7DDE4"/></linearGradient>
+<linearGradient id="steelF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A414B"/><stop offset="1" stop-color="#1A1F26"/></linearGradient>
+<linearGradient id="steelS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3038"/><stop offset="1" stop-color="#12161B"/></linearGradient>
+<linearGradient id="goldH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{gold}"/><stop offset="0.5" stop-color="{gold2}"/><stop offset="1" stop-color="{gold}"/></linearGradient>
+<linearGradient id="glossV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#BFE3F5"/><stop offset="1" stop-color="#7FB8D6"/></linearGradient>
+</defs>"""
+    svg = f'<svg viewBox="0 0 {vb_w:.0f} {vb_h:.0f}" xmlns="http://www.w3.org/2000/svg">{defs}{shadow}{bf}{bs}{pockets}{front}{side}{top}{front_details}{side_details}{top_details}{edge}{edge2}</svg>'
     return Markup(svg)
 
 
@@ -178,6 +281,7 @@ def render_html(env: Environment, d: dict, m: dict, t: dict) -> Path:
     html = tpl.render(
         d=d, m=m, t=t, assets=ASSETS.as_uri(),
         dims_svg=lambda dim: dims_svg(dim, t), panel_svg=lambda: panel_svg(t),
+        genset_svg=lambda dim: genset_svg(dim, t),
     )
     (HTML_OUT / t["key"]).mkdir(parents=True, exist_ok=True)
     p = HTML_OUT / t["key"] / f"{m['file']}.html"
