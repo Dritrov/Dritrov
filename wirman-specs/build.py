@@ -276,10 +276,20 @@ def load_models(only: set[str]) -> tuple[dict, list[dict]]:
     return d, models
 
 
+def find_photo(m: dict) -> str:
+    """Real product photo, if one was dropped into assets/photos/ (per model or shared)."""
+    for stem in (m["file"], m["kva_short"], "wirman"):
+        for ext in ("jpg", "jpeg", "png", "webp"):
+            p = ASSETS / "photos" / f"{stem}.{ext}"
+            if p.exists():
+                return p.as_uri()
+    return ""
+
+
 def render_html(env: Environment, d: dict, m: dict, t: dict) -> Path:
     tpl = env.get_template("datasheet.html.j2")
     html = tpl.render(
-        d=d, m=m, t=t, assets=ASSETS.as_uri(),
+        d=d, m=m, t=t, assets=ASSETS.as_uri(), photo=find_photo(m),
         dims_svg=lambda dim: dims_svg(dim, t), panel_svg=lambda: panel_svg(t),
         genset_svg=lambda dim: genset_svg(dim, t),
     )

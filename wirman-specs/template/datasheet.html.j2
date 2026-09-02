@@ -120,6 +120,14 @@ ol.callouts li span{ width:5mm; height:5mm; border-radius:50%; background:var(--
 .footer .pg{ font-family:var(--cond); font-weight:700; color:var(--p); }
 .footer .site{ color:var(--p); letter-spacing:0.04em; text-transform:none; font-family:var(--sans); font-weight:600; font-size:8pt; }
 
+/* ---- real photo variants ---- */
+.hero.has-photo{ grid-template-columns:minmax(0,1fr) 84mm; align-items:center; padding:5mm 12mm; }
+.hero.has-photo .art img{ width:100%; max-height:52mm; object-fit:contain; display:block; filter:drop-shadow(0 3mm 4mm rgba(0,0,0,0.5)); }
+.rates-row{ margin-top:-4mm; position:relative; z-index:2; }
+.rates-row .rates{ box-shadow:0 1.5mm 4mm rgba(0,0,0,0.18); }
+.rates-row .rates table{ table-layout:fixed; }
+.rates-row .rates td.v{ font-size:12pt; }
+
 /* ---- shared alternative rate presentations ---- */
 .tiles{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2.5mm; align-self:center; width:100%; }
 .tile{ background:#fff; border-radius:1.2mm; padding:2.6mm 3.2mm; border:0.25mm solid var(--line); }
@@ -248,6 +256,7 @@ ol.callouts li span{ background:#fff; color:var(--ink); border:0.35mm solid var(
 .hero h1 small{ color:rgba(255,255,255,0.7); }
 .hero .chip{ border:0.25mm solid rgba(201,162,39,0.6); color:var(--a2); background:rgba(201,162,39,0.08); box-shadow:inset 0 0.3mm 0 rgba(255,255,255,0.08); }
 .hero .art svg{ width:100%; height:auto; display:block; }
+.hero .art img{ width:100%; max-height:58mm; object-fit:contain; display:block; filter:drop-shadow(0 3mm 4mm rgba(0,0,0,0.55)); }
 .tile{ background:linear-gradient(165deg, #232A35 0%, #12161C 100%); border:0.25mm solid rgba(255,255,255,0.09); box-shadow:0 1.6mm 4mm rgba(0,0,0,0.55), inset 0 0.35mm 0 rgba(255,255,255,0.10); color:#fff; }
 .tile.big{ border-top:0.6mm solid var(--a); }
 .tile .k{ color:rgba(255,255,255,0.55); }
@@ -397,7 +406,7 @@ ol.callouts li{ color:#fff; }
       <div class="chip">{{ d.tagline }}</div>
       <div class="rates-label">{{ d.rates.heading }}</div>
     </div>
-    <div class="art">{{ genset_svg(m.dimensions) }}</div>
+    <div class="art">{% if photo %}<img src="{{ photo }}" alt="">{% else %}{{ genset_svg(m.dimensions) }}{% endif %}</div>
   </div>
   <div class="stats">
     <div class="stat big"><div class="k">{{ d.rates.columns[1] }} Power</div><div class="n">{{ m.rates.kva[0] }}<small>kVA</small></div><div class="n2">{{ m.rates.kw[0] }} kW</div></div>
@@ -416,6 +425,16 @@ ol.callouts li{ color:#fff; }
     </div>
     {{ rates_tiles('glass', 'g') }}
   </div>
+  {% elif photo %}
+  <div class="hero has-photo">
+    <div>
+      <div class="kicker">{{ d.series_line }}</div>
+      <h1>{{ m.code }}<small>{{ d.series_line.split('/')[0] | trim }}</small></h1>
+      <div class="chip">{{ d.tagline }}</div>
+    </div>
+    <div class="art"><img src="{{ photo }}" alt=""></div>
+  </div>
+  <div class="rates-row">{{ rates_table() }}</div>
   {% else %}
   <div class="hero">
     <div>
