@@ -2,8 +2,8 @@
   "brand": "WIRMAN",
   "website": "www.contanti.org",
   "series_line": "DIESEL GENERATOR SET / 50Hz",
-  "tagline": "WATER-COOLED THREE PHASES 50 HZ DIESEL",
-  "spec_heading": "SPECIFICATIONS 50HZ / 1.500 rpm",
+  "tagline": "WATER-COOLED THREE-PHASE 50 HZ DIESEL",
+  "spec_heading": "SPECIFICATIONS 50 HZ / 1500 rpm",
   "rates": {
     "heading": "GENERATOR RATES",
     "columns": [
@@ -24,11 +24,11 @@
       },
       {
         "label": "Speed",
-        "unit": "r.p.m",
+        "unit": "rpm",
         "key": "speed"
       },
       {
-        "label": "Standart Voltage",
+        "label": "Standard Voltage",
         "unit": "V",
         "key": "voltage"
       },
@@ -41,13 +41,13 @@
   },
   "certifications": {
     "iso": "WIRMAN has ISO 9001, ISO 14001 and OHSAS 18001 quality certifications.",
-    "ce_intro": "WIRMAN gensets are compliant with EC mark which includes the following directives:",
+    "ce_intro": "WIRMAN gensets are CE marked in accordance with the following directives:",
     "directives": [
-      "2006/42/CE Machinery safety.",
-      "2014/30/UE Electromagnetic compatibility.",
-      "2014/35/UE electrical equipment designed for use within certain voltage limits",
-      "2000/14/EC Sound Power level. Noise emissions outdoor equipment. (amended by 2005/88/EC)",
-      "97/68/EC Emissions of gaseous and particulate pollutants. (amended by 2002/88/EC & 2004/26/EC)",
+      "2006/42/EC Machinery safety",
+      "2014/30/EU Electromagnetic compatibility",
+      "2014/35/EU Electrical equipment designed for use within certain voltage limits",
+      "2000/14/EC Sound power level, noise emissions of outdoor equipment (amended by 2005/88/EC)",
+      "97/68/EC Emissions of gaseous and particulate pollutants (amended by 2002/88/EC & 2004/26/EC)",
       "EN 12100, EN 13857, EN 60204"
     ]
   },
@@ -58,7 +58,7 @@
     },
     {
       "title": "Emergency Standby Power (ESP):",
-      "text": "Emergency standby power is the maximum power available during a variable electrical power sequence, under the stated operating conditions, for which a generating set is capable of delivering in the event of a utility power outage or under test conditions for up to 200 h of operation per year with the maintenance intervals and procedures being carried out as prescribed by the manufacturers. The permissible average power output over 24 h of operation shall not exceed 70 % of the ESP."
+      "text": "Emergency standby power is the maximum power available during a variable electrical power sequence, under the stated operating conditions, for which a generating set is capable of delivering in the event of a utility power outage or under test conditions for up to 200 h of operation per year with the maintenance intervals and procedures being carried out as prescribed by the manufacturer. The permissible average power output over 24 h of operation shall not exceed 70 % of the ESP."
     }
   ],
   "note": "All data based on operation to BS 5514 and DIN 6271 standard reference conditions.",
@@ -146,7 +146,7 @@
     {
       "label": "Lube oil consumption with full load",
       "key": "lube_consumption",
-      "unit": ""
+      "unit": "l/h"
     },
     {
       "label": "Total oil capacity including tubes, filters",
@@ -201,7 +201,7 @@
       "unit": "Class"
     },
     {
-      "label": "Enclosure (according IEC-34-5)",
+      "label": "Enclosure (according to IEC 34-5)",
       "key": "enclosure",
       "unit": ""
     },
@@ -226,7 +226,7 @@
       "unit": ""
     },
     {
-      "label": "Efficiency ( %)",
+      "label": "Efficiency (%)",
       "key": "efficiency",
       "unit": ""
     },
@@ -258,33 +258,34 @@
   },
   "engine_common": {
     "manufacturer": "WIRMAN",
-    "cooling": "WATER + 50 % Antifreezze",
+    "cooling": "Water + 50 % antifreeze",
     "lube_oil": "ACEA E3,E4,E5 (15W-40)",
     "lube_consumption": "< 0.5",
-    "governor": "Mechanic",
-    "air_filter": "Dry"
+    "governor": "Mechanical",
+    "air_filter": "Dry",
+    "engine_type": "4 Stroke - Diesel"
   },
   "features": {
     "heading": "Standard Generator Features",
     "items": [
-      "Heavy duty water cooled diesel engine and brushless alternator",
+      "Heavy duty water-cooled diesel engine and brushless alternator",
       "Solid steel base frame with minimum 12 hours base tank and anti-vibration mountings",
-      "AMF Control panel with digital-automatic main control module",
-      "50C Tropical radiator",
-      "Battery charge redressor. Lead acid battery",
-      "Residencial type silencer",
+      "AMF control panel with digital automatic main control module",
+      "50 °C tropical radiator",
+      "Battery charge rectifier, lead-acid battery",
+      "Residential type silencer",
       "Flexible exhaust compensator",
-      "Block water heater unit",
-      "All rotating parts are covered by metal mesh against damages",
+      "Engine block water heater unit",
+      "All rotating parts covered by metal mesh guards",
       "Engine and alternator manufacturer test reports (if provided)",
       "Factory load, performance and function tests",
-      "User Manual, Electrical Drawing and Gurantee certificate"
+      "User manual, electrical drawing and guarantee certificate"
     ]
   },
   "canopy": {
-    "heading": "Sound Proof Canopy Specifications",
+    "heading": "Soundproof Canopy Specifications",
     "items": [
-      "Special design for minimizing acoustic level",
+      "Special design for minimising acoustic level",
       "Galvanized steel construction further protected by polyester powder coat paint",
       "Black finish stainless steel locks and hinges",
       "Control panel viewing window in a lockable access door",
@@ -331,7 +332,7 @@
       "Multiple display languages",
       "Five-key menu navigation",
       "LCD alarm indication",
-      "Customisable power-up text and screen images.",
+      "Customisable power-up text and screen images",
       "DSENet® expansion compatibility",
       "Data logging facility",
       "Internal PLC editor",
@@ -363,17 +364,17 @@
       "Uses DSE Configuration Suite PC Software for simplified configuration",
       "Licence-free PC software",
       "IP65 rating (with optional gasket) offers increased resistance to water ingress",
-      "Configurable CAN read & transmitted information.",
-      "1 alternative configuration."
+      "Configurable CAN read & transmitted information",
+      "1 alternative configuration"
     ],
     "key_benefits_heading": "KEY BENEFITS",
     "key_benefits": [
-      "Automatically transfers between mains (utility) and generator (DSE6120 MKIII only) for convenience.",
+      "Automatically transfers between mains (utility) and generator (DSE6120 MKIII only) for convenience",
       "Hours counter provides accurate information for monitoring and maintenance periods",
       "User-friendly set-up and button layout for ease of use",
       "Multiple parameters are monitored & displayed simultaneously for full visibility",
       "The module can be configured to suit a wide range of applications for user flexibility",
-      "PLC editor allows user configurable functions to meet user specific application requirements."
+      "PLC editor allows user configurable functions to meet user specific application requirements"
     ],
     "related_heading": "RELATED MATERIALS",
     "related_title_col": "TITLE",
@@ -417,7 +418,7 @@
         "injection": "Direct Injection",
         "aspiration": "Natural",
         "cylinders": "In line",
-        "bore_stroke": "89 / 92",
+        "bore_stroke": "89 x 92",
         "displacement": "1.1",
         "compression": "18:1",
         "fuel_110": "7.4",
@@ -431,7 +432,7 @@
         "model": "SF184ES"
       },
       "dimensions": {
-        "wlh": "900x2100x1210",
+        "wlh": "900 x 2100 x 1210",
         "w": 900,
         "l": 2100,
         "h": 1210,
@@ -471,7 +472,7 @@
         "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Natural",
-        "cylinders": "In line",
+        "cylinders": "4 In line",
         "bore_stroke": "102 x 118",
         "displacement": "3.8",
         "compression": "18:1",
@@ -486,7 +487,7 @@
         "model": "SF184G"
       },
       "dimensions": {
-        "wlh": "900x2100x1210",
+        "wlh": "900 x 2100 x 1210",
         "w": 900,
         "l": 2100,
         "h": 1210,
@@ -526,7 +527,7 @@
         "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Natural",
-        "cylinders": "In line",
+        "cylinders": "4 In line",
         "bore_stroke": "102 x 118",
         "displacement": "3.87",
         "compression": "18:1",
@@ -541,7 +542,7 @@
         "model": "SF224C"
       },
       "dimensions": {
-        "wlh": "980x2450x1300",
+        "wlh": "980 x 2450 x 1300",
         "w": 980,
         "l": 2450,
         "h": 1300,
@@ -581,7 +582,7 @@
         "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Turbo Charged",
-        "cylinders": "In line",
+        "cylinders": "4 In line",
         "bore_stroke": "105 x 118",
         "displacement": "4.087",
         "compression": "18:1",
@@ -596,7 +597,7 @@
         "model": "SF224D"
       },
       "dimensions": {
-        "wlh": "980x2450x1300",
+        "wlh": "980 x 2450 x 1300",
         "w": 980,
         "l": 2450,
         "h": 1300,
@@ -634,9 +635,9 @@
         "rated_output": "72",
         "model": "W-900D",
         "engine_type": "4 Stroke - Diesel",
-        "injection": "Turbo Charged",
-        "aspiration": "Natural",
-        "cylinders": "In line",
+        "injection": "Direct Injection",
+        "aspiration": "Turbo Charged",
+        "cylinders": "4 In line",
         "bore_stroke": "112 x 135",
         "displacement": "5.32",
         "compression": "17:1",
@@ -651,7 +652,7 @@
         "model": "SF224F"
       },
       "dimensions": {
-        "wlh": "980x2450x1300",
+        "wlh": "980 x 2450 x 1300",
         "w": 980,
         "l": 2450,
         "h": 1300,
@@ -688,11 +689,11 @@
       "engine": {
         "rated_output": "100",
         "model": "W-012CA",
-        "engine_type": "6 Stroke - Diesel",
+        "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Turbo Charged",
         "cylinders": "In line",
-        "bore_stroke": "115 / 135",
+        "bore_stroke": "115 x 135",
         "displacement": "6.87",
         "compression": "18:1",
         "fuel_110": "22.3",
@@ -706,7 +707,7 @@
         "model": "SF274C"
       },
       "dimensions": {
-        "wlh": "1080x2850x1600",
+        "wlh": "1080 x 2850 x 1600",
         "w": 1080,
         "l": 2850,
         "h": 1600,
@@ -743,11 +744,11 @@
       "engine": {
         "rated_output": "120",
         "model": "W-015CA",
-        "engine_type": "6 Stroke - Diesel",
+        "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Turbo Charged",
         "cylinders": "In line",
-        "bore_stroke": "115 / 135",
+        "bore_stroke": "115 x 135",
         "displacement": "6.95",
         "compression": "18:1",
         "fuel_110": "23",
@@ -761,7 +762,7 @@
         "model": "SF274D"
       },
       "dimensions": {
-        "wlh": "1080x2850x1600",
+        "wlh": "1080 x 2850 x 1600",
         "w": 1080,
         "l": 2850,
         "h": 1600,
@@ -798,13 +799,13 @@
       "engine": {
         "rated_output": "144",
         "model": "W-018CX",
-        "engine_type": "6 Stroke - Diesel",
+        "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Turbo Charged",
         "cylinders": "In line",
-        "bore_stroke": "120 / 135",
+        "bore_stroke": "120 x 135",
         "displacement": "7.1",
-        "compression": "17:5",
+        "compression": "17.5:1",
         "fuel_110": "31",
         "fuel_100": "29",
         "fuel_75": "24",
@@ -816,7 +817,7 @@
         "model": "SF274E"
       },
       "dimensions": {
-        "wlh": "1080x2850x1600",
+        "wlh": "1080 x 2850 x 1600",
         "w": 1080,
         "l": 2850,
         "h": 1600,
@@ -853,13 +854,13 @@
       "engine": {
         "rated_output": "176",
         "model": "W-022VW",
-        "engine_type": "6 Stroke - Diesel",
+        "engine_type": "4 Stroke - Diesel",
         "injection": "Direct Injection",
         "aspiration": "Turbo Charged",
         "cylinders": "In line",
-        "bore_stroke": "111 / 139",
-        "displacement": "16:4:1",
-        "compression": "16:4:1",
+        "bore_stroke": "111 x 139",
+        "displacement": "—",
+        "compression": "16.4:1",
         "fuel_110": "33",
         "fuel_100": "31.4",
         "fuel_75": "25.2",
@@ -871,7 +872,7 @@
         "model": "SF274G"
       },
       "dimensions": {
-        "wlh": "1130x3100x1610",
+        "wlh": "1130 x 3100 x 1610",
         "w": 1130,
         "l": 3100,
         "h": 1610,

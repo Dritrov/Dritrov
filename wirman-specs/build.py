@@ -6,9 +6,13 @@ prints each HTML page to an A4 PDF with headless Chromium and (optionally)
 renders PNG previews of every page with PyMuPDF.
 
 Usage:
-    python3 build.py              # build all models
-    python3 build.py 25 220       # build only the listed kVA sizes
-    python3 build.py --no-preview # skip PNG previews
+    python3 build.py                     # build all models in all themes
+    python3 build.py 25 220              # only the listed kVA sizes
+    python3 build.py classic minimal     # only the listed themes
+    python3 build.py --no-preview        # skip PNG previews
+
+Themes: classic (navy/amber), industrial (charcoal/red), minimal (white/teal),
+graphite (dark/electric blue). Output goes to output/<theme>/.
 """
 import json
 import os
@@ -27,6 +31,13 @@ ASSETS = ROOT / "assets"
 OUT = ROOT / "output"
 HTML_OUT = OUT / "html"
 PREVIEW = ROOT / "preview"
+
+THEMES = {
+    "classic":    {"key": "classic",    "name": "Classic Navy",      "primary": "#0B2740", "primary2": "#153B5E", "primary3": "#1E4D78", "accent": "#F2A900", "accent2": "#FFC53D", "on_accent": "#0B2740"},
+    "industrial": {"key": "industrial", "name": "Industrial Red",    "primary": "#1F2326", "primary2": "#2B3034", "primary3": "#3A4046", "accent": "#D7261E", "accent2": "#FF6A5F", "on_accent": "#FFFFFF"},
+    "minimal":    {"key": "minimal",    "name": "Minimal Teal",      "primary": "#16202B", "primary2": "#16202B", "primary3": "#16202B", "accent": "#0E7C86", "accent2": "#14A3AF", "on_accent": "#FFFFFF"},
+    "graphite":   {"key": "graphite",   "name": "Graphite Electric", "primary": "#14181D", "primary2": "#1C2128", "primary3": "#2A323C", "accent": "#2F80ED", "accent2": "#7FB3FF", "on_accent": "#FFFFFF"},
+}
 
 CHROME_CANDIDATES = [
     os.environ.get("CHROME_BIN", ""),
@@ -50,7 +61,7 @@ def find_chrome() -> str:
 # --------------------------------------------------------------------------
 # SVG generators (design elements only, values come straight from the data)
 # --------------------------------------------------------------------------
-def dims_svg(dim: dict) -> Markup:
+def dims_svg(dim: dict, theme: dict) -> Markup:
     """Oblique-projection canopy outline annotated with W x L x H."""
     W, L, H = float(dim["w"]), float(dim["l"]), float(dim["h"])
     s = 150.0 / L
@@ -58,7 +69,7 @@ def dims_svg(dim: dict) -> Markup:
     dx, dy = W * s * 0.55, W * s * 0.30
     x0, yb = 42.0, 118.0
     yt = yb - fh
-    navy, amber, muted = "#0B2740", "#F2A900", "#5B6877"
+    navy, amber, muted = theme["primary"], theme["accent"], "#5B6877"
 
     def f(v):
         return f"{v:.1f}"
@@ -96,9 +107,9 @@ def dims_svg(dim: dict) -> Markup:
     return Markup(svg)
 
 
-def panel_svg() -> Markup:
+def panel_svg(theme: dict) -> Markup:
     """Stylised front view of the DSE6120 MKIII control module with numbered callouts."""
-    navy, amber = "#0B2740", "#F2A900"
+    navy, amber = theme["on_accent"], theme["accent"]
     body, bezel = "#2E333A", "#1C2025"
     font = 'font-family="Barlow Condensed, Arial Narrow, sans-serif"'
 
@@ -162,11 +173,14 @@ def load_models(only: set[str]) -> tuple[dict, list[dict]]:
     return d, models
 
 
-def render_html(env: Environment, d: dict, m: dict) -> Path:
+def render_html(env: Environment, d: dict, m: dict, t: dict) -> Path:
     tpl = env.get_template("datasheet.html.j2")
-    html = tpl.render(d=d, m=m, assets=ASSETS.as_uri(), dims_svg=dims_svg, panel_svg=panel_svg)
-    HTML_OUT.mkdir(parents=True, exist_ok=True)
-    p = HTML_OUT / f"{m['file']}.html"
+    html = tpl.render(
+        d=d, m=m, t=t, assets=ASSETS.as_uri(),
+        dims_svg=lambda dim: dims_svg(dim, t), panel_svg=lambda: panel_svg(t),
+    )
+    (HTML_OUT / t["key"]).mkdir(parents=True, exist_ok=True)
+    p = HTML_OUT / t["key"] / f"{m['file']}.html"
     p.write_text(html, encoding="utf-8")
     return p
 
@@ -182,7 +196,7 @@ def print_pdf(chrome: str, html: Path, pdf: Path) -> None:
         raise RuntimeError(f"Chromium failed for {html.name}:\n{r.stderr[-2000:]}")
 
 
-def preview_pngs(pdf: Path, stem: str) -> list[Path]:
+def preview_pngs(pdf: Path, stem: str, theme: str) -> list[Path]:
     try:
         import pymupdf  # type: ignore
     except ImportError:
@@ -190,12 +204,12 @@ def preview_pngs(pdf: Path, stem: str) -> list[Path]:
             import fitz as pymupdf  # type: ignore
         except ImportError:
             return []
-    PREVIEW.mkdir(parents=True, exist_ok=True)
+    (PREVIEW / theme).mkdir(parents=True, exist_ok=True)
     out = []
     with pymupdf.open(pdf) as doc:
         for i, page in enumerate(doc, 1):
             pix = page.get_pixmap(dpi=110)
-            p = PREVIEW / f"{stem} - page {i}.png"
+            p = PREVIEW / theme / f"{stem} - page {i}.png"
             pix.save(p)
             out.append(p)
     return out
@@ -204,18 +218,22 @@ def preview_pngs(pdf: Path, stem: str) -> list[Path]:
 def main(argv: list[str]) -> None:
     no_preview = "--no-preview" in argv
     only = {a for a in argv if a.isdigit()}
+    themes = [a for a in argv if a in THEMES] or list(THEMES)
     chrome = find_chrome()
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=select_autoescape(["html", "j2"]))
     d, models = load_models(only)
-    OUT.mkdir(parents=True, exist_ok=True)
-    for m in models:
-        html = render_html(env, d, m)
-        pdf = OUT / f"{m['file']}.pdf"
-        print_pdf(chrome, html, pdf)
-        pages = 0
-        if not no_preview:
-            pages = len(preview_pngs(pdf, m["file"]))
-        print(f"OK  {pdf.name:22s} {pdf.stat().st_size/1024:7.0f} KB  pages={pages or '?'}")
+    for tk in themes:
+        t = THEMES[tk]
+        out_dir = OUT / tk
+        out_dir.mkdir(parents=True, exist_ok=True)
+        for m in models:
+            html = render_html(env, d, m, t)
+            pdf = out_dir / f"{m['file']}.pdf"
+            print_pdf(chrome, html, pdf)
+            pages = 0
+            if not no_preview:
+                pages = len(preview_pngs(pdf, m["file"], tk))
+            print(f"OK  {tk:11s} {pdf.name:20s} {pdf.stat().st_size/1024:6.0f} KB  pages={pages or '?'}")
 
 
 if __name__ == "__main__":
