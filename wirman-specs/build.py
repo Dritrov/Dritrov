@@ -37,6 +37,7 @@ THEMES = {
     "industrial": {"key": "industrial", "name": "Industrial Red",    "primary": "#1F2326", "primary2": "#2B3034", "primary3": "#3A4046", "accent": "#D7261E", "accent2": "#FF6A5F", "on_accent": "#FFFFFF"},
     "minimal":    {"key": "minimal",    "name": "Minimal Teal",      "primary": "#16202B", "primary2": "#16202B", "primary3": "#16202B", "accent": "#0E7C86", "accent2": "#14A3AF", "on_accent": "#FFFFFF"},
     "premium":    {"key": "premium",    "name": "Premium 3D",        "primary": "#0C0F14", "primary2": "#161B23", "primary3": "#242B37", "accent": "#C9A227", "accent2": "#EAD27A", "on_accent": "#0C0F14"},
+    "datasheet":  {"key": "datasheet",  "name": "Data Sheet (Cummins-style order)", "template": "datasheet-cummins.html.j2", "primary": "#1B2A3A", "primary2": "#1B2A3A", "primary3": "#2B3F55", "accent": "#F2A900", "accent2": "#FFC53D", "on_accent": "#1B2A3A"},
     "graphite":   {"key": "graphite",   "name": "Graphite Electric", "primary": "#14181D", "primary2": "#1C2128", "primary3": "#2A323C", "accent": "#2F80ED", "accent2": "#7FB3FF", "on_accent": "#FFFFFF"},
 }
 
@@ -287,7 +288,7 @@ def find_photo(m: dict) -> str:
 
 
 def render_html(env: Environment, d: dict, m: dict, t: dict) -> Path:
-    tpl = env.get_template("datasheet.html.j2")
+    tpl = env.get_template(t.get("template", "datasheet.html.j2"))
     html = tpl.render(
         d=d, m=m, t=t, assets=ASSETS.as_uri(), photo=find_photo(m),
         dims_svg=lambda dim: dims_svg(dim, t), panel_svg=lambda: panel_svg(t),

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ m.code }} Generator set data sheet</title>
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;src:url('{{ assets }}/fonts/Inter-Variable.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:600;src:url('{{ assets }}/fonts/BarlowCondensed-600.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;src:url('{{ assets }}/fonts/BarlowCondensed-700.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:800;src:url('{{ assets }}/fonts/BarlowCondensed-800.woff2') format('woff2');}
+:root{
+  --p:{{ t.primary }}; --a:{{ t.accent }}; --a2:{{ t.accent2 }};
+  --ink:#1A1F26; --muted:#5F6B78; --line:#C9D1DA; --line-2:#E4E9EF; --band:#EEF1F5; --band-2:#F7F8FA;
+  --cond:'Barlow Condensed','Arial Narrow','Liberation Sans',sans-serif; --sans:'Inter','Liberation Sans',Arial,sans-serif;
+}
+@page{ size:A4; margin:0; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#fff; color:var(--ink); font-family:var(--sans); font-size:8.2pt; line-height:1.3; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.page{ position:relative; width:210mm; height:297mm; padding:10mm 14mm 18mm; overflow:hidden; page-break-after:always; background:#fff; }
+.page:last-child{ page-break-after:auto; }
+
+/* masthead (page 1) */
+.mast{ display:flex; justify-content:space-between; align-items:flex-start; border-bottom:0.6mm solid var(--p); padding-bottom:3mm; }
+.brand{ display:flex; align-items:center; gap:2.4mm; }
+.brand .mark{ width:9mm; height:9mm; background:var(--p); border-radius:1.2mm; display:flex; align-items:center; justify-content:center; }
+.brand .mark svg{ width:6.2mm; height:6.2mm; }
+.brand .word{ font-family:var(--cond); font-weight:800; font-size:24pt; letter-spacing:0.09em; color:var(--p); line-height:1; }
+.brand .tag{ font-family:var(--cond); font-weight:600; font-size:8.5pt; letter-spacing:0.18em; color:var(--muted); text-transform:uppercase; margin-top:1mm; }
+.mast .title{ text-align:right; }
+.mast .title h1{ margin:0; font-family:var(--cond); font-weight:700; font-size:22pt; color:var(--p); letter-spacing:0.02em; line-height:1; }
+.mast .title table{ margin-left:auto; margin-top:2mm; border-collapse:collapse; }
+.mast .title td{ padding:0.4mm 0 0.4mm 4mm; font-size:8.5pt; }
+.mast .title td:first-child{ color:var(--muted); }
+.mast .title td:last-child{ font-weight:700; }
+
+/* running head (pages 2+) */
+.rh{ display:flex; justify-content:space-between; align-items:center; border-bottom:0.35mm solid var(--p); padding-bottom:2mm; font-family:var(--cond); font-weight:600; font-size:9.5pt; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); }
+.rh b{ color:var(--p); font-weight:800; font-size:13pt; letter-spacing:0.09em; }
+
+/* sections */
+h2{ margin:4mm 0 2mm; padding:1.6mm 3mm; background:var(--band); border-left:1.2mm solid var(--a); font-family:var(--cond); font-weight:700; font-size:12.5pt; letter-spacing:0.06em; color:var(--p); text-transform:uppercase; }
+h2:first-child{ margin-top:4mm; }
+h3{ margin:2.5mm 0 1.5mm; font-family:var(--cond); font-weight:700; font-size:10.5pt; letter-spacing:0.06em; color:var(--ink); text-transform:uppercase; }
+p{ margin:0 0 1.6mm; text-align:justify; }
+.cols{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6mm; }
+.cols-3{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:6mm; align-items:start; }
+
+/* tables */
+table.t{ width:100%; border-collapse:collapse; }
+table.t th{ font-family:var(--cond); font-weight:700; font-size:9pt; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background:var(--p); padding:1.6mm 2.5mm; text-align:left; }
+table.t th.c, table.t td.c{ text-align:center; }
+table.t td{ padding:1.35mm 2.5mm; border-bottom:0.2mm solid var(--line-2); vertical-align:top; }
+table.t tr:nth-child(even) td{ background:var(--band-2); }
+table.t td.l{ color:var(--muted); width:58%; }
+table.t td.v{ font-weight:600; }
+table.t td.u{ color:var(--muted); font-size:7.5pt; text-align:right; white-space:nowrap; width:10mm; }
+table.t td.big{ font-family:var(--cond); font-weight:700; font-size:14pt; color:var(--p); text-align:center; }
+table.t td.big small{ display:block; font-family:var(--sans); font-weight:500; font-size:7.5pt; color:var(--muted); }
+table.t.rating th{ text-align:center; }
+table.t.rating td{ border-bottom:0.25mm solid var(--line); }
+
+/* lists */
+ul{ margin:0; padding:0 0 0 4mm; }
+li{ margin:0 0 1.1mm; padding-left:0.5mm; }
+ul.two{ columns:2; column-gap:6mm; }
+ul.two li{ break-inside:avoid; }
+li::marker{ color:var(--a); }
+
+/* photo / figure */
+.figure{ border:0.25mm solid var(--line); background:var(--band-2); padding:3mm; display:flex; align-items:center; justify-content:center; min-height:30mm; }
+.figure img{ max-width:100%; max-height:52mm; object-fit:contain; display:block; }
+.figure svg{ width:100%; height:auto; }
+.figure .ph{ font-family:var(--cond); font-weight:600; font-size:9pt; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-align:center; }
+.panel{ background:var(--band-2); border:0.25mm solid var(--line); padding:3mm; }
+.panel svg{ width:100%; height:auto; display:block; }
+ol.callouts{ list-style:none; margin:2mm 0 0; padding:0; columns:2; column-gap:5mm; }
+ol.callouts li{ display:flex; align-items:center; gap:2mm; margin-bottom:1mm; break-inside:avoid; }
+ol.callouts li span{ width:4.4mm; height:4.4mm; border-radius:50%; background:var(--a); color:var(--p); font-family:var(--cond); font-weight:800; font-size:8.5pt; display:flex; align-items:center; justify-content:center; flex:none; }
+
+.note{ margin-top:2.5mm; padding:2mm 3mm; background:var(--band); border-left:0.9mm solid var(--a); color:var(--muted); }
+.note b{ color:var(--p); }
+
+/* footer */
+.footer{ position:absolute; left:14mm; right:14mm; bottom:8mm; border-top:0.25mm solid var(--line); padding-top:2mm; display:flex; justify-content:space-between; align-items:center; font-size:7.5pt; color:var(--muted); }
+.footer b{ color:var(--p); font-family:var(--cond); font-size:9pt; letter-spacing:0.08em; }
+.footer .doc{ font-family:var(--cond); letter-spacing:0.06em; }
+</style>
+</head>
+<body>
+
+{% set doc_code = "WM-DS-" ~ m.kva_short ~ "-50" %}
+{% macro footer(n) -%}
+<div class="footer">
+  <div><b>{{ d.brand }}</b> &nbsp;·&nbsp; {{ d.website }}</div>
+  <div class="doc">{{ m.code }} &nbsp;|&nbsp; {{ d.series_line }} &nbsp;|&nbsp; {{ doc_code }}</div>
+  <div>Page {{ n }} of 3</div>
+</div>
+{%- endmacro %}
+{% macro rh() -%}
+<div class="rh"><b>{{ d.brand }}</b><span>Generator set data sheet &nbsp;·&nbsp; {{ m.code }} &nbsp;·&nbsp; 50 Hz &nbsp;·&nbsp; Diesel</span></div>
+{%- endmacro %}
+{% macro brandmark() -%}
+<div class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M13.5 2 5 13.5h6L10.5 22 19 10.5h-6z" fill="{{ t.accent }}"/></svg></div>
+{%- endmacro %}
+
+<!-- ============================ PAGE 1 ============================ -->
+<div class="page">
+  <div class="mast">
+    <div>
+      <div class="brand">{{ brandmark() }}<div class="word">{{ d.brand }}</div></div>
+      <div class="tag">Diesel generator sets</div>
+    </div>
+    <div class="title">
+      <h1>Generator set data sheet</h1>
+      <table>
+        <tr><td>Model:</td><td>{{ m.code }}</td></tr>
+        <tr><td>Frequency:</td><td>50 Hz</td></tr>
+        <tr><td>Fuel type:</td><td>Diesel</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="cols-3">
+    <div>
+      <h2>Ratings</h2>
+      <table class="t rating">
+        <tr><th>Model</th><th class="c">Standby rating</th><th class="c">Prime rating</th><th class="c">Speed</th><th class="c">Power factor</th></tr>
+        <tr>
+          <td class="v" style="vertical-align:middle;white-space:nowrap">{{ m.code }}</td>
+          <td class="big">{{ m.rates.kva[0] }} kVA<small>{{ m.rates.kw[0] }} kW</small></td>
+          <td class="big">{{ m.rates.kva[1] }} kVA<small>{{ m.rates.kw[1] }} kW</small></td>
+          <td class="big">{{ m.rates.speed[0] }}<small>rpm</small></td>
+          <td class="big">{{ m.rates.pf[0] }}<small>Cos Phi</small></td>
+        </tr>
+      </table>
+      <table class="t rating" style="margin-top:2mm">
+        <tr><th>Standard voltage</th><th class="c">Standby kVA</th><th class="c">Standby kW</th><th class="c">Prime kVA</th><th class="c">Prime kW</th></tr>
+        <tr><td class="v">{{ m.rates.voltage[0] }} V</td><td class="c v">{{ m.rates.kva[0] }}</td><td class="c v">{{ m.rates.kw[0] }}</td><td class="c v">{{ m.rates.kva[1] }}</td><td class="c v">{{ m.rates.kw[1] }}</td></tr>
+      </table>
+
+      <h2>Description</h2>
+      <p>{{ m.code }} {{ d.series_line.split('/')[0] | trim | lower }}: {{ d.tagline | lower }}, {{ m.rates.speed[0] }} rpm, {{ m.rates.voltage[0] }} V, power factor {{ m.rates.pf[0] }}. Engine {{ m.engine.manufacturer }} {{ m.engine.model }}, alternator {{ m.alternator.manufacturer }} {{ m.alternator.model }}, control unit DSE6120 MKIII.</p>
+      <p>{{ d.certifications.iso }}</p>
+
+      <h2>{{ d.features.heading }}</h2>
+      <ul>{% for f in d.features['items'] %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <h2>{{ m.code }}</h2>
+      <div class="figure">
+        {% if photo %}<img src="{{ photo }}" alt="">{% else %}<div class="ph">Product photo</div>{% endif %}
+      </div>
+      <h2>{{ d.canopy.heading }}</h2>
+      <ul>{% for f in d.canopy['items'] %}<li>{{ f }}</li>{% endfor %}</ul>
+
+      <h2>Codes and standards</h2>
+      <p>{{ d.certifications.iso }} {{ d.certifications.ce_intro }}</p>
+      <ul>{% for x in d.certifications.directives %}<li>{{ x }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+
+  <h2>Ratings definitions</h2>
+  <div class="cols" style="font-size:7.7pt">
+    {% for x in d.definitions %}<div><h3 style="margin-top:0">{{ x.title | replace(':','') }}</h3><p>{{ x.text }}</p></div>{% endfor %}
+  </div>
+  {{ footer(1) }}
+</div>
+
+<!-- ============================ PAGE 2 ============================ -->
+<div class="page">
+  {{ rh() }}
+
+  <h2>Generator set specifications</h2>
+  <div class="cols">
+    <table class="t">
+      <tr><td class="l">Frequency</td><td class="v">50</td><td class="u">Hz</td></tr>
+      <tr><td class="l">Engine speed</td><td class="v">{{ m.rates.speed[0] }}</td><td class="u">rpm</td></tr>
+      <tr><td class="l">Standard voltage</td><td class="v">{{ m.rates.voltage[0] }}</td><td class="u">V</td></tr>
+    </table>
+    <table class="t">
+      <tr><td class="l">Power factor</td><td class="v">{{ m.rates.pf[0] }}</td><td class="u">Cos Phi</td></tr>
+      <tr><td class="l">Phases / poles</td><td class="v">3 / {{ m.alternator.poles }}</td><td class="u"></td></tr>
+      <tr><td class="l">Connection type (standard)</td><td class="v">{{ m.alternator.connection }}</td><td class="u"></td></tr>
+    </table>
+  </div>
+
+  <h2>Engine specifications <span style="float:right;font-weight:600;color:var(--muted)">{{ m.engine.manufacturer }} {{ m.engine.model }}</span></h2>
+  {% set er = d.engine_rows %}
+  {% set half = (er | length + 1) // 2 %}
+  <div class="cols">
+    <table class="t">
+      {% for r in er[:half] %}<tr><td class="l">{{ r.label }}</td><td class="v">{{ m.engine[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>{% endfor %}
+    </table>
+    <table class="t">
+      {% for r in er[half:] %}<tr><td class="l">{{ r.label }}</td><td class="v">{{ m.engine[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <h2>Alternator specifications <span style="float:right;font-weight:600;color:var(--muted)">{{ m.alternator.manufacturer }} {{ m.alternator.model }}</span></h2>
+  {% set ar = d.alternator_rows %}
+  {% set ahalf = (ar | length + 1) // 2 %}
+  <div class="cols">
+    <table class="t">
+      {% for r in ar[:ahalf] %}<tr><td class="l">{{ r.label }}</td><td class="v">{{ m.alternator[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>{% endfor %}
+    </table>
+    <table class="t">
+      {% for r in ar[ahalf:] %}<tr><td class="l">{{ r.label }}</td><td class="v">{{ m.alternator[r.key] }}</td><td class="u">{{ r.unit }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <h2>Fuel consumption <span style="float:right;font-weight:600;color:var(--muted)">{{ d.spec_heading }}</span></h2>
+  <table class="t rating">
+    <tr><th>Load</th><th class="c">Standby (110 %)</th><th class="c">100 % PRP</th><th class="c">75 % PRP</th><th class="c">50 % PRP</th><th class="c">Unit</th></tr>
+    <tr><td class="v">Fuel consumption</td><td class="c v">{{ m.engine.fuel_110 }}</td><td class="c v">{{ m.engine.fuel_100 }}</td><td class="c v">{{ m.engine.fuel_75 }}</td><td class="c v">{{ m.engine.fuel_50 }}</td><td class="c">l/h</td></tr>
+  </table>
+  <div class="note"><b>Note:</b> {{ d.note }}</div>
+  {{ footer(2) }}
+</div>
+
+<!-- ============================ PAGE 3 ============================ -->
+<div class="page">
+  {{ rh() }}
+
+  <h2>Control system <span style="float:right;font-weight:600;color:var(--muted)">DSE6120 MKIII</span></h2>
+  <div class="cols-3">
+    <div>
+      <h3>{{ d.control_unit.key_features_heading }}</h3>
+      <ul class="two">{% for f in d.control_unit.key_features %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <div class="panel">{{ panel_svg() }}</div>
+      <ol class="callouts">{% for lbl in d.control_unit.panel_labels %}<li><span>{{ loop.index }}</span>{{ lbl }}</li>{% endfor %}</ol>
+      <h3>{{ d.control_unit.key_benefits_heading }}</h3>
+      <ul>{% for f in d.control_unit.key_benefits %}<li>{{ f }}</li>{% endfor %}</ul>
+      <h3>{{ d.control_unit.related_heading }}</h3>
+      <ul>{% for r in d.control_unit.related %}<li>{{ r }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+
+  <h2>Weights and dimensions <span style="float:right;font-weight:600;color:var(--muted)">{{ d.dimensions.variant }}</span></h2>
+  <div class="cols-3">
+    <div class="figure">{{ dims_svg(m.dimensions) }}</div>
+    <table class="t">
+      <tr><th colspan="3">{{ d.dimensions.variant | capitalize }} set</th></tr>
+      <tr><td class="l">Length (L)</td><td class="v">{{ m.dimensions.l }}</td><td class="u">mm</td></tr>
+      <tr><td class="l">Width (W)</td><td class="v">{{ m.dimensions.w }}</td><td class="u">mm</td></tr>
+      <tr><td class="l">Height (H)</td><td class="v">{{ m.dimensions.h }}</td><td class="u">mm</td></tr>
+      <tr><td class="l">Weight</td><td class="v">{{ m.dimensions.weight }}</td><td class="u">kg</td></tr>
+      <tr><td class="l">Fuel tank</td><td class="v">{{ m.dimensions.fuel_tank }}</td><td class="u">lt</td></tr>
+    </table>
+  </div>
+
+  {{ footer(3) }}
+</div>
+
+</body>
+</html>
